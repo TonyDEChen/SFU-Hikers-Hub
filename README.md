@@ -23,8 +23,6 @@ cd SFU-Hikers-Hub
 ```bash
 mvn install
 ```
-4. Create a `.env` file or set environment variables for database configurations and API keys for OpenWeather API and Google Maps.
-
 5. Run the application:
 ```bash
 mvn spring-boot:run
