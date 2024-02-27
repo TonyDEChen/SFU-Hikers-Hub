@@ -17,7 +17,7 @@ git clone https://github.com/TonyDEChen/SFU-Hikers-Hub.git
 ```
 2. Navigate to the project directory:
 ```bash
-cd sfuhikershub
+cd SFU-Hikers-Hub
 ```
 3. Install dependencies using Maven:
 ```bash
