@@ -13,7 +13,7 @@ The SFU Hikers Hub is a centralized digital platform designed for the Simon Fras
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourproject/sfuhikershub.git
+git clone https://github.com/TonyDEChen/SFU-Hikers-Hub.git
 ```
 2. Navigate to the project directory:
 ```bash
