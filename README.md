@@ -23,7 +23,7 @@ cd SFU-Hikers-Hub
 ```bash
 mvn install
 ```
-5. Run the application:
+4. Run the application:
 ```bash
 mvn spring-boot:run
 ```
