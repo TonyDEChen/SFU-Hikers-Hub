@@ -9,18 +9,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid;
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String username;
     private String password;
     private int totalKm;
     private int totalHikes;
-    //probably add more fields later for the profile stats feature
-    /* 
-    POSTGRESSQL TABLE FORMAT:
-    uid SERIAL, name VARCHAR, numkm INTEGER, numhikes INTEGER, password VARCHAR
-    */
 
-    public User(String name, String password) {
-        this.name = name;
+    public User(String firstName, String lastName, String email, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
         this.password = password;
     }
 
@@ -34,8 +35,20 @@ public class User {
         this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public String getfirstName() {
+        return firstName;
+    }
+
+    public String getlastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public int getTotalKm() {
@@ -58,8 +71,20 @@ public class User {
         return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
