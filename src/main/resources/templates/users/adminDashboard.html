@@ -33,14 +33,14 @@
                             <td>
                                 <!-- edit button -->
                                 <form action="/users/edit" method="get">
-                                    <input type="hidden" id="id" name="id" th:value="${user.id}">
+                                    <input type="hidden" id="id" name="id" th:value="${user.uid}">
                                     <button class="btn btn-primary" type="submit" value="SEND">Promote to Admin</button>
                                 </form>
                             </td>
                             <td>
                                 <!-- remove button -->
                                 <form action="/users/remove" method="post">
-                                    <input type="hidden" id="id" name="id" th:value="${user.id}">
+                                    <input type="hidden" id="id" name="id" th:value="${user.uid}">
                                     <button class="btn btn-primary" type="submit" value="SEND">Delete Account</button>
                                 </form>
                             </td>
