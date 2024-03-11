@@ -11,6 +11,8 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.*;
+import java.util.List;
 
 import org.springframework.ui.Model;
 
@@ -19,6 +21,18 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepo;
+
+    @GetMapping("/users/adminDashboard")
+    public String getAllUsers(Model model)
+    {
+        System.out.println("getting all users");
+
+        List<User> users = userRepo.findAll();
+
+        model.addAttribute("us", users);
+        
+        return "users/adminDashboard";
+    }
 
     @PostMapping("/register")
     public String addStudent(@RequestParam Map<String, String> newUser, HttpServletResponse response) {
