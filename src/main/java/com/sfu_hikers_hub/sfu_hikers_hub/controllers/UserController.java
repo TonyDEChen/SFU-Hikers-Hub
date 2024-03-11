@@ -13,7 +13,7 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
-import org.springframework.ui.Model;
+import org.springframework.ui.*;
 
 @Controller
 public class UserController {
@@ -83,7 +83,9 @@ public class UserController {
             return "login";
         }
     }
+    
 
+    /* 
     @GetMapping("/")
     public String home() {
         return "index";
@@ -98,5 +100,8 @@ public class UserController {
     public String register() {
         return "register";
     }
+
+    */
+    
 
 }
