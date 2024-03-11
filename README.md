@@ -21,7 +21,7 @@ cd SFU-Hikers-Hub
 ```
 3. Install dependencies using Maven:
 ```bash
-mvn install
+mvn clean install
 ```
 4. Run the application:
 ```bash
