@@ -43,4 +43,23 @@ public class UserController {
         response.setStatus(201);
         return "success"; // <--- doesn't exist yet
     }
+
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username,
+            @RequestParam("password") String password,
+            HttpServletResponse response,
+            Model model) {
+        User user = userRepo.findByUsername(username);
+
+        if (user != null && user.getPassword().equals(password)) {
+            // Login successful, proceed to the main page
+            return "welcome";
+        } else {
+            // Login failed, return to the login page with an error message
+            model.addAttribute("errorMessage", "Invalid username or password");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return "login";
+        }
+    }
+
 }
