@@ -11,7 +11,6 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.ui.*;
 import java.util.List;
 
 import org.springframework.ui.Model;
@@ -35,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String addStudent(@RequestParam Map<String, String> newUser, HttpServletResponse response) {
+    public String addStudent(@RequestParam Map<String, String> newUser, HttpServletResponse response, Model model) {
         String firstName = newUser.get("firstName");
         String lastName = newUser.get("lastName");
         String username = newUser.get("username");
@@ -44,18 +43,26 @@ public class UserController {
 
         if (userRepo.findByUsername(username) != null) {
             response.setStatus(409);
-            return "failure"; // <--- doesn't exist yet
+            model.addAttribute("errorMessage", "Username already exists");
+            model.addAttribute("firstName", firstName);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("email", email);
+            return "register";
         }
 
         if (userRepo.findByEmail(email) != null) {
             response.setStatus(409);
-            return "failure"; // <--- doesn't exist yet
+            model.addAttribute("errorMessage", "Email already exists");
+            model.addAttribute("firstName", firstName);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("username", username);
+            return "register";
         }
 
         userRepo.save(new User(firstName, lastName, email, username, password));
 
         response.setStatus(201);
-        return "success"; // <--- doesn't exist yet
+        return "index";
     }
 
     @PostMapping("/login")
@@ -67,13 +74,29 @@ public class UserController {
 
         if (user != null && user.getPassword().equals(password)) {
             // Login successful, proceed to the main page
-            return "welcome";
+            return "index";
         } else {
             // Login failed, return to the login page with an error message
             model.addAttribute("errorMessage", "Invalid username or password");
+            model.addAttribute("username", username);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return "login";
         }
+    }
+
+    @GetMapping("/")
+    public String home() {
+        return "index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "register";
     }
 
 }
