@@ -41,8 +41,11 @@
         </div>
     </header>
 
-    <main>
-
+    <main class="container-fluid">
+        <div th:each="post:${ps}">
+            <span th:text="${post.title}"></span>
+            <span th:text="${post.body}"></span>
+        </div>
     </main>
 
     <footer class="footer mt-auto py-3 bg-body-tertiary">
