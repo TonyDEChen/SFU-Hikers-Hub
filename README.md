@@ -10,11 +10,11 @@ The SFU Hikers Hub is a centralized digital platform designed for the Simon Fras
 - Added Registration System for Club Members/Administrators
 - Added Login System for Club Members/Administrators
 
-#### Work Distribution:
+### Work Distribution:
 - Repo Setup: Chris Sim
 - Navbar and Footer: Tony Chen
 - Login Page: Lavika Singh
-- Registration Page: Ahmed Masud
+- Registration Page: Ahmad Masud
 - Report: Vu Bui
 
 ## Getting Started
