@@ -37,11 +37,11 @@ public class User {
         this.uid = uid;
     }
 
-    public String getfirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public String getlastName() {
+    public String getLastName() {
         return lastName;
     }
 

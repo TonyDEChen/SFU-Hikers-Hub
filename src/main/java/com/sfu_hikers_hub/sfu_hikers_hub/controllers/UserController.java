@@ -34,6 +34,10 @@ public class UserController {
         List<User> users = userRepo.findAll();
 
         model.addAttribute("us", users);
+        for(int i = 0; i < users.size(); i++)
+        {
+            System.out.println(users.get(i).getUsername());
+        }
         
         return "users/adminDashboard";
     }

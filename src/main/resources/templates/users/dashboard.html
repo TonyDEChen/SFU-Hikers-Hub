@@ -32,8 +32,8 @@
                         <a class="nav-link" href="#">Forum</a>
                     </li>
 
-                    <li th:if="${user.isAdmin}">
-                        <button id="adminButton">Admin Only Button</button>
+                    <li class="nav-item fs-4" th:if="${user.isAdmin}">
+                        <a class="nav-link" href="/adminDashboard">Admin Dashboard</a>
                     </li>
                     
                 </ul>
