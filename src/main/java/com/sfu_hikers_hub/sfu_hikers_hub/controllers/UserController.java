@@ -9,6 +9,8 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
@@ -47,7 +49,7 @@ public class UserController {
             model.addAttribute("firstName", firstName);
             model.addAttribute("lastName", lastName);
             model.addAttribute("email", email);
-            return "register";
+            return "users/register";
         }
 
         if (userRepo.findByEmail(email) != null) {
@@ -56,7 +58,7 @@ public class UserController {
             model.addAttribute("firstName", firstName);
             model.addAttribute("lastName", lastName);
             model.addAttribute("username", username);
-            return "register";
+            return "users/register";
         }
 
         userRepo.save(new User(firstName, lastName, email, username, password));
@@ -69,7 +71,9 @@ public class UserController {
     public String login(@RequestParam("username") String username,
             @RequestParam("password") String password,
             HttpServletResponse response,
+            HttpSession session,
             Model model) {
+
         User user = userRepo.findByUsername(username);
 
         if (user != null && user.getPassword().equals(password)) {
@@ -80,30 +84,29 @@ public class UserController {
             model.addAttribute("errorMessage", "Invalid username or password");
             model.addAttribute("username", username);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return "login";
+            return "users/login";
         }
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-    
-
-    /* 
     @GetMapping("/")
     public String home() {
         return "index";
     }
-    
-    
 
-    */
-    
+    @GetMapping("/login")
+    public String login(Model model, HttpSession session, HttpServletResponse request) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "users/login";
+        } else {
+            model.addAttribute("user", user);
+            return "dashboard";
+        }
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "users/register";
+    }
 
 }
