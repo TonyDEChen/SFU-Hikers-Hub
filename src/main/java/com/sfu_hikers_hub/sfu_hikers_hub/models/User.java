@@ -16,6 +16,7 @@ public class User {
     private String password;
     private int totalKm;
     private int totalHikes;
+    private boolean isAdmin;
 
     public User(String firstName, String lastName, String email, String username, String password) {
         this.firstName = firstName;
@@ -23,6 +24,7 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.isAdmin = false;
     }
 
     public User() {}
@@ -35,11 +37,11 @@ public class User {
         this.uid = uid;
     }
 
-    public String getfirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public String getlastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -53,6 +55,14 @@ public class User {
 
     public int getTotalKm() {
         return totalKm;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public void setTotalKm(int totalKm) {

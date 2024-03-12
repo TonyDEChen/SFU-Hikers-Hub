@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class UserController {
@@ -24,7 +26,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("/users/adminDashboard")
+    @GetMapping("/adminDashboard")
     public String getAllUsers(Model model)
     {
         System.out.println("getting all users");
@@ -32,6 +34,10 @@ public class UserController {
         List<User> users = userRepo.findAll();
 
         model.addAttribute("us", users);
+        for(int i = 0; i < users.size(); i++)
+        {
+            System.out.println(users.get(i).getUsername() + " " + users.get(i).isAdmin());
+        }
         
         return "users/adminDashboard";
     }
@@ -78,10 +84,18 @@ public class UserController {
 
         User user = userRepo.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(password) && !user.isAdmin()) {
             // Login successful, proceed to the main page
             request.getSession().setAttribute("session_user", user);
+            model.addAttribute("user", user);
             return "users/dashboard";
+        }
+        
+        else if(user != null & user.getPassword().equals(password) && user.isAdmin()) {
+            request.getSession().setAttribute("session_user", user);
+            model.addAttribute("user", user);
+            return "users/dashboard";
+        
         } else {
             // Login failed, return to the login page with an error message
             model.addAttribute("errorMessage", "Invalid username or password");
@@ -90,6 +104,27 @@ public class UserController {
             return "users/login";
         }
     }
+
+    @PostMapping("/promote")
+    public String promoteUser(@RequestParam("uid") int uid, Model model) {
+        User promotingUser = userRepo.findByUid(uid);
+
+        System.out.println("promoting: " + promotingUser.getUsername());
+        promotingUser.setAdmin(true);
+
+        userRepo.save(promotingUser);
+
+        //User promotedUser = new User(promotingUser.getFirstName(), promotingUser.getLastName(), promotingUser.getEmail(), promotingUser.getUsername(), promotingUser.getPassword());
+        //promotedUser.setTotalHikes(promotedUser.getTotalHikes());
+        //promotedUser.setTotalKm(promotedUser.getTotalKm());
+        //promotedUser.setAdmin(true);
+
+        List<User> users = userRepo.findAll();
+        model.addAttribute("us", users);
+        
+        return "users/adminDashboard";
+    }
+    
 
     @GetMapping("/")
     public String home() {
