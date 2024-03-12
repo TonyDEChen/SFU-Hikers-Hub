@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class UserController {
@@ -96,6 +98,14 @@ public class UserController {
             return "users/login";
         }
     }
+
+    @PostMapping("/promote")
+    public String promoteUser(@RequestParam("uid") int uid) {
+        User user = userRepo.findByUid(uid);
+        user.setAdmin(true);
+        return "users/adminDashboard";
+    }
+    
 
     @GetMapping("/")
     public String home() {
