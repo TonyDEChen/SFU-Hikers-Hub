@@ -106,9 +106,22 @@ public class UserController {
     }
 
     @PostMapping("/promote")
-    public String promoteUser(@RequestParam("uid") int uid) {
-        User user = userRepo.findByUid(uid);
-        user.setAdmin(true);
+    public String promoteUser(@RequestParam("uid") int uid, Model model) {
+        User promotingUser = userRepo.findByUid(uid);
+
+        System.out.println("promoting: " + promotingUser.getUsername());
+        promotingUser.setAdmin(true);
+
+        userRepo.save(promotingUser);
+
+        //User promotedUser = new User(promotingUser.getFirstName(), promotingUser.getLastName(), promotingUser.getEmail(), promotingUser.getUsername(), promotingUser.getPassword());
+        //promotedUser.setTotalHikes(promotedUser.getTotalHikes());
+        //promotedUser.setTotalKm(promotedUser.getTotalKm());
+        //promotedUser.setAdmin(true);
+
+        List<User> users = userRepo.findAll();
+        model.addAttribute("us", users);
+        
         return "users/adminDashboard";
     }
     

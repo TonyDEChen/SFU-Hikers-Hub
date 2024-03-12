@@ -6,7 +6,43 @@
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<body>
+
+<body class="d-flex flex-column h-100">
+    <header class="navbar navbar-expand-lg bg-body-tertiary justify-content-center">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Logo" width="64" height="64">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                </ul>
+                <ul class="navbar-nav mt-auto mb-2 mb-lg-0">
+                    <li class="nav-item fs-4">
+                        <a class="nav-link" href="#">Info</a>
+                    </li>
+                    <li class="nav-item fs-4">
+                        <a class="nav-link" href="#">Gallery</a>
+                    </li>
+                    <li class="nav-item fs-4">
+                        <a class="nav-link" href="#">Forum</a>
+                    </li>
+                    
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item fs-4">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
     <main class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -32,17 +68,19 @@
                             <td th:text="${user.isAdmin} ? 'Yes' : 'No'"></td>
                             <td>
                                 <!-- edit button -->
-                                <form action="/promote" method="get">
-                                    <input type="hidden" id="id" name="id" th:value="${user.uid}">
+                                <form action="/promote" method="post">
+                                    <input type="hidden" id="uid" name="uid" th:value="${user.uid}">
                                     <button class="btn btn-primary" type="submit" value="SEND">Promote to Admin</button>
                                 </form>
                             </td>
                             <td>
                                 <!-- remove button -->
+                                <!--
                                 <form action="/users/remove" method="post">
                                     <input type="hidden" id="id" name="id" th:value="${user.uid}">
                                     <button class="btn btn-primary" type="submit" value="SEND">Delete Account</button>
                                 </form>
+                                -->
                             </td>
                         </tr>
                     </tbody>
