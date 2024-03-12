@@ -36,7 +36,7 @@ public class UserController {
         model.addAttribute("us", users);
         for(int i = 0; i < users.size(); i++)
         {
-            System.out.println(users.get(i).getUsername());
+            System.out.println(users.get(i).getUsername() + " " + users.get(i).isAdmin());
         }
         
         return "users/adminDashboard";

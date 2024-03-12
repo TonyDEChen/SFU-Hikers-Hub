@@ -19,6 +19,7 @@
                             <th scope="col">Last Name</th>
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Admin Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,7 @@
                             <td th:text="${user.lastName}"></td>
                             <td th:text="${user.username}"></td>
                             <td th:text="${user.email}"></td>
+                            <td th:text="${user.isAdmin} ? 'Yes' : 'No'"></td>
                             <td>
                                 <!-- edit button -->
                                 <form action="/promote" method="get">
