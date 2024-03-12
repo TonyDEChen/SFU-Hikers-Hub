@@ -17,6 +17,14 @@ public class Post {
     private String title;
     private String body;
 
+    public Post() {
+    }
+    public Post(String op, String title, String body) {
+        this.op = op;
+        this.title = title;
+        this.body = body;
+    }
+
     public int getPid() {
         return pid;
     }
