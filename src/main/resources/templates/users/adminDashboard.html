@@ -30,7 +30,7 @@
                             <td th:text="${user.email}"></td>
                             <td>
                                 <!-- edit button -->
-                                <form action="/users/edit" method="get">
+                                <form action="/promote" method="get">
                                     <input type="hidden" id="id" name="id" th:value="${user.uid}">
                                     <button class="btn btn-primary" type="submit" value="SEND">Promote to Admin</button>
                                 </form>

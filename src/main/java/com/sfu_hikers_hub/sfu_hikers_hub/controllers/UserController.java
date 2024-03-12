@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("/users/adminDashboard")
+    @GetMapping("/adminDashboard")
     public String getAllUsers(Model model)
     {
         System.out.println("getting all users");
@@ -83,12 +83,14 @@ public class UserController {
         if (user != null && user.getPassword().equals(password) && !user.isAdmin()) {
             // Login successful, proceed to the main page
             request.getSession().setAttribute("session_user", user);
+            model.addAttribute("user", user);
             return "users/dashboard";
         }
         
         else if(user != null & user.getPassword().equals(password) && user.isAdmin()) {
             request.getSession().setAttribute("session_user", user);
-            return "users/adminDashboard";
+            model.addAttribute("user", user);
+            return "users/dashboard";
         
         } else {
             // Login failed, return to the login page with an error message

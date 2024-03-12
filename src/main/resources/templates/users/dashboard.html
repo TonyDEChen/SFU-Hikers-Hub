@@ -31,6 +31,11 @@
                     <li class="nav-item fs-4">
                         <a class="nav-link" href="#">Forum</a>
                     </li>
+
+                    <li th:if="${user.isAdmin}">
+                        <button id="adminButton">Admin Only Button</button>
+                    </li>
+                    
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item fs-4">
