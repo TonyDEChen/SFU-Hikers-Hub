@@ -3,28 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>SFU Hikers Hub - Login</title>
+    <link rel="stylesheet" type="text/css" href="styles/global.css">
     <link rel="stylesheet" type="text/css" href="styles/login.css">
 </head>
 <body>
     <div class="login-container">
         <form action="/login" method="post">
-            <h2>Login</h2>
+            <p class="title">Login</p>
             <p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
-            <div>
-                <input th:value="${username}" type="text" id="username" name="username" placeholder="Username" required>
-            </div>
-            <div>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-            </div>
-            <div>
-                <input type="submit" value="Login">
-            </div>
-            <div>
-                <a href="/forgot-password">Forgot Password?</a>
-            </div>
-            <div>
-                <p>Don't have an account? <a href="/register">Register</a></p>
-            </div>
+            <input th:value="${username}" type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+            <a href="/forgot-password">Forgot Password?</a>
+            <p>Don't have an account? <a href="/register">Register</a></p>
         </form>
     </div>
 </body>

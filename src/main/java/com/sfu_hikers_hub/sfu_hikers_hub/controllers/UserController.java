@@ -91,7 +91,7 @@ public class UserController {
             return "users/dashboard";
         }
         
-        else if(user != null & user.getPassword().equals(password) && user.isAdmin()) {
+        else if(user != null && user.getPassword().equals(password) && user.isAdmin()) {
             request.getSession().setAttribute("session_user", user);
             model.addAttribute("user", user);
             return "users/dashboard";

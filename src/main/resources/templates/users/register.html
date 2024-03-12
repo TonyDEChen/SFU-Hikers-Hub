@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SFU Hikers Hub - Register</title>
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/register.css">
+    <link rel="stylesheet" type="text/css" href="styles/global.css">
+    <link rel="stylesheet" type="text/css" href="styles/register.css">
 </head>
 <body>
     <div class="container">
@@ -18,7 +18,7 @@
             <input class="input" th:value="${email}" type="email" id="email" name="email" placeholder="Email" required>
             <input class="input" type="password" id="password" name="password" placeholder="Password" required>
             <button class="submit-button" type="submit">Register</button>
-            <span class="link">Already a Member? <a href="/login">Login</a></span>
+            <span class="link">Already have an account? <a href="/login">Login</a></span>
         </form>
     </div>
 </body>
