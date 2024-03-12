@@ -28,7 +28,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Usage
+## Features
 - **Event Sharing System**: Create and view posts with specified locations, including real-time weather updates.
 - **Community Engagement**: Participate in discussions, share photos, and connect with fellow hiking enthusiasts.
 - **Personal Achievements**: Customize your profile with your hiking achievements, including total kilometers hiked and trails visited.
