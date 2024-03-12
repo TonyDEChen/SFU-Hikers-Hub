@@ -78,10 +78,16 @@ public class UserController {
 
         User user = userRepo.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(password) && !user.isAdmin()) {
             // Login successful, proceed to the main page
             request.getSession().setAttribute("session_user", user);
             return "users/dashboard";
+        }
+        
+        else if(user != null & user.getPassword().equals(password) && user.isAdmin()) {
+            request.getSession().setAttribute("session_user", user);
+            return "users/adminDashboard";
+        
         } else {
             // Login failed, return to the login page with an error message
             model.addAttribute("errorMessage", "Invalid username or password");
