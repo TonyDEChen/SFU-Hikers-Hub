@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -71,6 +72,7 @@ public class UserController {
     public String login(@RequestParam("username") String username,
             @RequestParam("password") String password,
             HttpServletResponse response,
+            HttpServletRequest request,
             HttpSession session,
             Model model) {
 
@@ -78,7 +80,8 @@ public class UserController {
 
         if (user != null && user.getPassword().equals(password)) {
             // Login successful, proceed to the main page
-            return "index";
+            request.getSession().setAttribute("session_user", user);
+            return "users/dashboard";
         } else {
             // Login failed, return to the login page with an error message
             model.addAttribute("errorMessage", "Invalid username or password");
@@ -93,20 +96,24 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/login")
-    public String login(Model model, HttpSession session, HttpServletResponse request) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return "users/login";
-        } else {
-            model.addAttribute("user", user);
-            return "dashboard";
-        }
-    }
-
     @GetMapping("/register")
     public String register() {
         return "users/register";
     }
 
+    @GetMapping("/login")
+    public String login(Model model, HttpSession session, HttpServletRequest request) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "users/login";
+        } else {
+            return "users/dashboard";
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "index";
+    }
 }
