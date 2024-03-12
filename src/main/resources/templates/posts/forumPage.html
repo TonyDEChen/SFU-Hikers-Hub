@@ -29,7 +29,7 @@
                         <a class="nav-link" href="#">Gallery</a>
                     </li>
                     <li class="nav-item fs-4">
-                        <a class="nav-link" href="#">Forum</a>
+                        <a class="nav-link" href="/posts/view">Forum</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -42,9 +42,21 @@
     </header>
 
     <main class="container-fluid">
+        <div>
+            <a href="addPost.html" class="btn btn-primary" role="button">Add Post</a>
+        </div>
         <div th:each="post:${ps}">
-            <span th:text="${post.title}"></span>
-            <span th:text="${post.body}"></span>
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <div class="d-flex text-body-secondary pt-3">
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark fs-3" th:text="${post.title}"></strong>
+                        <small class="d-block text-gray-dark" th:text="${post.body}"></small>
+                    </p>
+                </div>
+                
+            </div>
+            <!-- <th th:text="${post.title}"></th>
+            <td th:text="${post.body}"></td> -->
         </div>
     </main>
 

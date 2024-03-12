@@ -41,8 +41,29 @@
         </div>
     </header>
 
-    <main>
-
+    <main class="container-fluid">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <h1 class="text-center mt-5 mb-4">New Post</h1>
+                    <form action="/posts/add" method="post">
+                        
+                        <div class="mb-3">
+                            <input type="text" id="title" name="title" class="form-control form-control-lg" placeholder="title">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="body" name="body" class="form-control form-control-lg" placeholder="text">
+                        </div>
+                    
+                        <div class="d-grid gap-2">
+                            <!-- submit button -->
+                            <input class="btn btn-primary" type="submit" value="SEND"></input>
+                        </div>
+    
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer mt-auto py-3 bg-body-tertiary">
