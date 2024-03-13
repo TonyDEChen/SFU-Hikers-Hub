@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
@@ -26,20 +25,24 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("/adminDashboard")
-    public String getAllUsers(Model model)
-    {
-        System.out.println("getting all users");
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        } else if (user.isAdmin()) {
+            List<User> users = userRepo.findAll();
 
-        List<User> users = userRepo.findAll();
-
-        model.addAttribute("us", users);
-        for(int i = 0; i < users.size(); i++)
-        {
-            System.out.println(users.get(i).getUsername() + " " + users.get(i).isAdmin());
+            model.addAttribute("us", users);
+            for(int i = 0; i < users.size(); i++) {
+                 System.out.println(users.get(i).getUsername() + " " + users.get(i).isAdmin());
+            }
+            
+            return "users/adminDashboard";
+        } else {
+            model.addAttribute("user", user);
+            return "users/dashboard";
         }
-        
-        return "users/adminDashboard";
     }
 
     @PostMapping("/register")
@@ -84,18 +87,11 @@ public class UserController {
 
         User user = userRepo.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(password) && !user.isAdmin()) {
+        if (user != null && user.getPassword().equals(password)) {
             // Login successful, proceed to the main page
             request.getSession().setAttribute("session_user", user);
             model.addAttribute("user", user);
-            return "users/dashboard";
-        }
-        
-        else if(user != null && user.getPassword().equals(password) && user.isAdmin()) {
-            request.getSession().setAttribute("session_user", user);
-            model.addAttribute("user", user);
-            return "users/dashboard";
-        
+            return "redirect:/dashboard";
         } else {
             // Login failed, return to the login page with an error message
             model.addAttribute("errorMessage", "Invalid username or password");
@@ -142,7 +138,7 @@ public class UserController {
         if (user == null) {
             return "users/login";
         } else {
-            return "users/dashboard";
+            return "redirect:/dashboard";
         }
     }
 

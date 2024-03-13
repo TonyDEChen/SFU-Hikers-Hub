@@ -1,0 +1,33 @@
+.footer {
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125px;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-copyright-text {
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        justify-content: center;
+        gap: 10px;
+    }
+}

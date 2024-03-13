@@ -1,0 +1,49 @@
+.navbar {
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    margin-bottom: 70px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 20px);
+}
+
+.container-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.container-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-toggler {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.nav-link, .footer-link {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+    transition: all 200ms ease-in-out;
+}
+
+.nav-link:hover, .footer-link:hover {
+    color: maroon;
+}
