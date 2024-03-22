@@ -3,25 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Events</title>
+    <link rel="stylesheet" type="text/css" href="../styles/global.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../styles/footer.css">
+    <link rel="stylesheet" type = text/css href="../styles/viewEvents.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <h1>Create Forum Post</h1>
-    <form action="/events/add" method="post">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title" required><br><br>
+    <header class="navbar">
+        <div class="container">
+            <div class="container-left">
+                <a class="navbar-brand" href="/">
+                    <img src="../images/logo.png" alt="Logo" width="64" height="64">
+                </a>
+                <a href="/info" class="nav-link">Info</a>
+                <a href="/gallery" class="nav-link">Gallery</a>
+                <a href="/posts/view" class="nav-link">Forum</a>
+                <a href="/events/view" class="nav-link">Events</a>
+            </div>
+            <div class="container-right">
+                <a href="/logout" class="nav-link">Logout</a>
+            </div>
+        </div>
+    </header>
+    <main class="container-fluid">
+        <div class="justify-content-center">
+            <h1>Create Forum Post</h1>
+            <form action="/events/add" method="post">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" required><br><br>
 
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" name="location" required><br><br>
+                <label for="location">Location:</label><br>
+                <input type="text" id="location" name="location" required><br><br>
 
-        <label for="time">Time:</label><br>
-        <!-- <input type="datetime-local" id="time" name="time" required><br><br> -->
-        <input type="text" id="time" name="time" maxlength="20" required><br><br>
+                <label for="time">Time:</label><br>
+                <!-- <input type="datetime-local" id="time" name="time" required><br><br> -->
+                <input type="text" id="time" name="time" maxlength="20" required><br><br>
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
 
-        <input type="submit" value="Submit">
-    </form>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-copyright-text">SFU Hiking Club 2024 ©</p>
+            <div class="footer-links">
+                <a href="hikers@sfu.ca" class="footer-link"><i class="bi bi-envelope-fill"></i></a>
+                <a href="https://go.sfss.ca/clubs/622/info" target="_blank" rel="noreferrer" class="footer-link"><i class="bi bi-globe"></i></a>
+                <a href="https://www.instagram.com/sfuhikers/" target="_blank" rel="noreferrer" class="footer-link"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.facebook.com/sfuhikers/" target="_blank" rel="noreferrer" class="footer-link"><i class="bi bi-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
