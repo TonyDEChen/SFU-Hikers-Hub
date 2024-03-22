@@ -76,5 +76,33 @@ public class EventController {
             return "events/error";
         }
     }
+
+    @PostMapping("/events/view/{eid}/signup")
+    public String signup4Event(@PathVariable int eid, HttpSession session){
+        try {
+            User user = (User)session.getAttribute("session_user");
+            if(user == null){
+                System.out.println("session not found");
+                return "events/error";
+            }
+            System.out.println("current session user "+user.getUsername());
+            Event event = eventRepo.findByEid(eid);
+            if(event == null){
+                System.out.println("event not found");
+                return "events/error";
+            }
+            try {
+                event.addAttendee(user.getUid());
+                System.out.println("Successfully signed up for event");
+            } catch (Exception e) {
+                System.out.println("error adding attendee to list");
+            }
+
+            return "redirect:/events/view/{eid}";
+        } catch (Exception e) {
+            System.out.println("unknown error");
+            return "events/error";
+        }
+    }
     
 }
