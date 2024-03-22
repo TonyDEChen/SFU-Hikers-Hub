@@ -6,6 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    Add event
+    <h1>Create Forum Post</h1>
+    <form action="/events/add" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <label for="time">Time:</label><br>
+        <!-- <input type="datetime-local" id="time" name="time" required><br><br> -->
+        <input type="text" id="time" name="time" maxlength="20" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
