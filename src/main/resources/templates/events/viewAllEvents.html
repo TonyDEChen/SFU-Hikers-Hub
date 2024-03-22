@@ -36,7 +36,7 @@
             </form>
         </div>
         <div class = "event-list-container">
-            <div th:each="event: ${events}">
+            <div class = "event-container" th:each="event: ${events}">
                 <div class="post-title" th:text="${event.title}"></div>
             </div>
 
