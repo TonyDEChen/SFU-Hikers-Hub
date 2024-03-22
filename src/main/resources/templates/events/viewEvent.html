@@ -7,11 +7,17 @@
 </head>
 <body>
     <main>
-        <h1 th:text="${event.title}"></h1>
-        <p th:text="${event.op}"></p>
-        <p th:text="${event.location}"></p>
-        <p th:text="${event.time}"></p>
-        <p th:text="${event.body}"></p>
+        <div class = "event-info">
+            <h1 th:text="${event.title}"></h1>
+            <p th:text="${event.op}"></p>
+            <p th:text="${event.location}"></p>
+            <p th:text="${event.time}"></p>
+            <p th:text="${event.body}"></p>
+        </div>
+
+        <div class = "event-sign-up" th:if="${user != null}">
+            test text
+        </div>
     </main>
 </body>
 </html>
