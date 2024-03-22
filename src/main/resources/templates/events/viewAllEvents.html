@@ -31,7 +31,9 @@
     
     <main>
         <div class = "add-event-button">
-            
+            <form action = "/events/add">
+                <button th:if="${user.isAdmin}" class="nav-link"> Add Event </button> 
+            </form>
         </div>
         <div class = "event-list-container">
             <div th:each="event: ${events}">

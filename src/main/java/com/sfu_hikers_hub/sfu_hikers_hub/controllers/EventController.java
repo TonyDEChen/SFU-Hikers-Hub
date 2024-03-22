@@ -25,10 +25,12 @@ public class EventController {
     private EventRepository eventRepo;
 
     @GetMapping("/events/view")
-    public String getAllEvents(Model model){
+    public String getAllEvents(Model model, HttpSession session){
         System.out.println("Getting all events");
+        User user = (User)session.getAttribute("session_user");
         List<Event> events = eventRepo.findAll();
         model.addAttribute("events", events);
+        model.addAttribute("user", user);
         return "events/viewAllEvents";
     }
 
