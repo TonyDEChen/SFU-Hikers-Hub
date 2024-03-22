@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -59,6 +60,19 @@ public class EventController {
             return "events/error";
         }
         return "redirect:/events/view";
+    }
+
+    @GetMapping("/events/view/{eid}")
+    public String viewEvent(@PathVariable int eid, Model model){
+        try{
+            Event event = eventRepo.getReferenceById(eid);
+            if(event == null) return "events/error";
+            model.addAttribute("event", event);
+            return "events/viewEvent";
+        }catch(Exception e){
+            System.out.println("Error finding event");
+            return "events/error";
+        }
     }
     
 }
