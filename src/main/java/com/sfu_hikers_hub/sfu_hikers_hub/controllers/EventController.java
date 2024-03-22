@@ -65,11 +65,14 @@ public class EventController {
     }
 
     @GetMapping("/events/view/{eid}")
-    public String viewEvent(@PathVariable int eid, Model model){
+    public String viewEvent(@PathVariable int eid, Model model, HttpSession session){
         try{
+            
+            User user = (User)session.getAttribute("session_user");
             Event event = eventRepo.findByEid(eid);
             if(event == null) return "events/error";
             model.addAttribute("event", event);
+            model.addAttribute("user", user);
             return "events/viewEvent";
         }catch(Exception e){
             System.out.println("Error finding event");
