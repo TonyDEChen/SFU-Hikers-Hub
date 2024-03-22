@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Event;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.EventRepository;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
+import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class EventController {
@@ -27,6 +29,17 @@ public class EventController {
         List<Event> events = eventRepo.findAll();
         model.addAttribute("es", events);
         return "events/viewEvents";
+    }
+
+    @GetMapping("/events/add")
+    public String showAdd(HttpSession session){
+        User user = (User)session.getAttribute("session_user");
+        if(user==null){
+            return "redirect:/login";
+        }else if(user.isAdmin()){
+            return "events/addEvent";
+        }
+        return "events/error";
     }
 
     @PostMapping("/events/add")
