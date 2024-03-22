@@ -65,7 +65,7 @@ public class EventController {
     @GetMapping("/events/view/{eid}")
     public String viewEvent(@PathVariable int eid, Model model){
         try{
-            Event event = eventRepo.getReferenceById(eid);
+            Event event = eventRepo.findByEid(eid);
             if(event == null) return "events/error";
             model.addAttribute("event", event);
             return "events/viewEvent";
