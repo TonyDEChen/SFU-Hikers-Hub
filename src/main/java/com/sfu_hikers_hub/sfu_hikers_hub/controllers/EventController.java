@@ -28,7 +28,7 @@ public class EventController {
         System.out.println("Getting all events");
         List<Event> events = eventRepo.findAll();
         model.addAttribute("events", events);
-        return "events/viewEvents";
+        return "events/viewAllEvents";
     }
 
     @GetMapping("/events/add")
