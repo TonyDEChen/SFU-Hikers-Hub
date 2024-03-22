@@ -1,0 +1,44 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Style for the container of each forum post */
+  .post-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the post title */
+  .post-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for the post author */
+  .post-author {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for the post content */
+  .post-content {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the post timestamp */
+  .post-timestamp {
+    font-size: 12px;
+    color: #888;
+  }
+  

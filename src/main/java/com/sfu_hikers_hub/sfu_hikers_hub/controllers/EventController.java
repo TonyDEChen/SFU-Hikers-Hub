@@ -27,7 +27,7 @@ public class EventController {
     public String getAllEvents(Model model){
         System.out.println("Getting all events");
         List<Event> events = eventRepo.findAll();
-        model.addAttribute("es", events);
+        model.addAttribute("events", events);
         return "events/viewEvents";
     }
 
