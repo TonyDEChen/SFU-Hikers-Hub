@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <!--
+    
     <header class="navbar">
         <div class="container">
             <div class="container-left">
@@ -28,9 +28,9 @@
             </div>
         </div>
     </header>
-    -->
+    
     <main>
-        <div class = "event-container">
+        <div class = "event-list-container">
             <div th:each="event: ${events}">
                 <div class="post-title" th:text="${event.title}"></div>
                 
