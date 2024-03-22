@@ -97,6 +97,8 @@ public class EventController {
             try {
                 event.addAttendee(user.getUid());
                 System.out.println("Successfully signed up for event");
+                System.out.println("All attendees: "+event.getAttendees());
+                eventRepo.save(event);
             } catch (Exception e) {
                 System.out.println("error adding attendee to list");
             }

@@ -98,7 +98,7 @@ public class Event {
         Integer id = Integer.valueOf(uid);
         this.attendees.add(id);
         // for(int i = 0; i < this.attendees.size(); i++){
-            System.out.println(this.attendees);
+            // System.out.println(this.attendees);
         // }
     }
 
