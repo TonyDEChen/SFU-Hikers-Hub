@@ -6,7 +6,7 @@
   }
   
   /* Style for the container of each forum post */
-  .post-container {
+  .event-container {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
@@ -14,7 +14,7 @@
   }
   
   /* Style for the post title */
-  .post-title {
+  .event-title {
     font-size: 20px;
     font-weight: bold;
     color: #333;
@@ -22,14 +22,14 @@
   }
   
   /* Style for the post author */
-  .post-author {
+  .event-author {
     font-style: italic;
     color: #666;
     margin-bottom: 5px;
   }
   
   /* Style for the post content */
-  .post-content {
+  .event-content {
     font-size: 16px;
     color: #444;
     line-height: 1.5;
@@ -37,7 +37,7 @@
   }
   
   /* Style for the post timestamp */
-  .post-timestamp {
+  .event-timestamp {
     font-size: 12px;
     color: #888;
   }
