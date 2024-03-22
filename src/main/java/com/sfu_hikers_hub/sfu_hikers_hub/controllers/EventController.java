@@ -43,9 +43,22 @@ public class EventController {
     }
 
     @PostMapping("/events/add")
-    public String addEvent(@RequestParam Map<String, String> newevent, HttpServletResponse response){
-        //WIP
-        return "";
+    public String addEvent(@RequestParam Map<String, String> newevent, HttpServletResponse response, HttpSession session){
+        System.out.println("Adding event");
+        try{
+            User user = (User)session.getAttribute("session_user");
+            String op = user.getUsername();
+            String title = newevent.get("title");
+            String location = newevent.get("location");
+            String time = newevent.get("time");
+            String body = newevent.get("description");
+            eventRepo.save(new Event(op, title, location, time, body));
+            response.setStatus(201);
+        }catch(Exception e){
+            System.out.println("Failed to add event");
+            return "events/error";
+        }
+        return "redirect:/events/view";
     }
     
 }
