@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Integer>{
     Event findByEid(int eid);
+    void deleteById(int eid);
     
 }

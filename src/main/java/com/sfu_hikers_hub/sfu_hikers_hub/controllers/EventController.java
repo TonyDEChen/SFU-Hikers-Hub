@@ -64,6 +64,13 @@ public class EventController {
         return "redirect:/events/view";
     }
 
+    @PostMapping("/events/remove")
+    public String deleteEvent(@RequestParam("eid") int eid, Model model, HttpSession session){
+        System.out.println("removing event: " + eid);
+        eventRepo.deleteById(eid);
+        return "redirect:/events/view";
+    }
+
     @GetMapping("/events/view/{eid}")
     public String viewEvent(@PathVariable int eid, Model model, HttpSession session){
         try{

@@ -38,6 +38,10 @@
         <div class = "event-list-container">
             <div class = "event-container" th:each="event: ${events}">
                 <a class="post-title" th:text="${event.title}" th:href="@{/events/view/{id}(id=${event.eid})}"></a>
+                <form action="/events/remove" method="post">
+                    <input type="hidden" id="eid" name="eid" th:value="${event.eid}">
+                    <button type="submit" value="SEND">Delete Event</button>
+                </form>
             </div>
 
             
