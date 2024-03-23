@@ -50,6 +50,7 @@ public class EventController {
         System.out.println("Adding event");
         try{
             User user = (User)session.getAttribute("session_user");
+            if(user == null) return "redirect:/login";
             String op = user.getUsername();
             String title = newevent.get("title");
             String location = newevent.get("location");
@@ -76,6 +77,7 @@ public class EventController {
         try{
             
             User user = (User)session.getAttribute("session_user");
+            if(user == null) return "redirect:/login";
             Event event = eventRepo.findByEid(eid);
             if(event == null) return "events/error";
             model.addAttribute("event", event);
@@ -122,7 +124,7 @@ public class EventController {
         User user = (User)session.getAttribute("session_user");
         if(user == null){
             System.out.println("session not found");
-            return "events/error";
+            return "redirect:/login";
         }
         Event event = eventRepo.findByEid(eid);
         if(event == null){
