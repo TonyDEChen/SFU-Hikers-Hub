@@ -7,6 +7,15 @@
 </head>
 <body>
     <main>
+        <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="a4002586-2b13-49ab-901c-9cfb9e6bff42"
+        data-page-id= ${event.eid}
+        data-page-url="{{ PAGE_URL }}"
+        data-page-title="{{ PAGE_TITLE }}"
+        ></div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
         <h1 th:text="${event.title}"></h1>
         <p th:text="${event.op}"></p>
         <p th:text="${event.location}"></p>
