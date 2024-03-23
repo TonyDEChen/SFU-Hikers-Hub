@@ -24,7 +24,9 @@
                 <a href="/events/view" class="nav-link">Events</a>
             </div>
             <div class="container-right">
-                <a href="/logout" class="nav-link">Logout</a>
+                <a th:if="${user != null}" href="/logout" class="nav-link">Logout</a>
+                <a th:if="${user == null}" href="/login" class="nav-link">Login</a>
+                <a th:if="${user == null}" ref="/register" class="nav-link">Register</a>
             </div>
         </div>
     </header>
@@ -38,7 +40,7 @@
         <div class = "event-list-container">
             <div class = "event-container" th:each="event: ${events}">
                 <a class="post-title" th:text="${event.title}" th:href="@{/events/view/{id}(id=${event.eid})}"></a>
-                <form action="/events/remove" method="post">
+                <form action="/events/remove" method="post" th:if="${user != null and user.isAdmin}">
                     <input type="hidden" id="eid" name="eid" th:value="${event.eid}">
                     <button type="submit" value="SEND">Delete Event</button>
                 </form>

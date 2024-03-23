@@ -7,7 +7,7 @@
 </head>
 <body>
     <main>
-        <div id="cusdis_thread"
+        <div id="cusdis_thread" th:if="${user != null}"
         data-host="https://cusdis.com"
         data-app-id="a4002586-2b13-49ab-901c-9cfb9e6bff42"
         th:data-page-id= ${event.eid}
@@ -21,12 +21,12 @@
         <p th:text="${event.location}"></p>
         <p th:text="${event.time}"></p>
         <p th:text="${event.body}"></p>
-        <form method="post" th:action="@{/events/view/{eid}/signup(eid=${event.eid})}">
+        <form method="post" th:if="${user != null}" th:action="@{/events/view/{eid}/signup(eid=${event.eid})}">
             <!-- <button class="btn btn-primary" type="submit" value="SEND">Sign Up</button> -->
             <input type="submit"> sign up
         </form>
 
-        <form method="post" th:action="@{/events/view/{eid}/cancel(eid=${event.eid})}">
+        <form method="post" th:if="${user != null}" th:action="@{/events/view/{eid}/cancel(eid=${event.eid})}">
             <input type="submit"> cancel
         </form>
     </main>
