@@ -13,16 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.PostRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class PostController {
-    
+
     @Autowired
     private PostRepository postRepo;
-    
+
     @GetMapping("/posts/view")
-    public String getAllPosts(Model model){
+    public String getAllPosts(Model model) {
         System.out.println("Getting all posts");
         List<Post> posts = postRepo.findAll();
         model.addAttribute("ps", posts);
@@ -30,7 +31,8 @@ public class PostController {
     }
 
     @PostMapping("/posts/add")
-    public String addPost(@RequestParam Map<String, String> newpost, HttpServletResponse response){
+    public String addPost(@RequestParam Map<String, String> newpost, HttpServletResponse response,
+            HttpServletRequest request) {
         System.out.println("Adding post");
         try {
             String op = "temp";
