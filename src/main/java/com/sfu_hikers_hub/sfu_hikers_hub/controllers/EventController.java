@@ -109,5 +109,41 @@ public class EventController {
             return "events/error";
         }
     }
+    @PostMapping("/events/view/{eid}/cancel")
+    public String cancelSignUp(@PathVariable int eid, HttpSession session)
+    {
+        User user = (User)session.getAttribute("session_user");
+        if(user == null){
+            System.out.println("session not found");
+            return "events/error";
+        }
+        Event event = eventRepo.findByEid(eid);
+        if(event == null){
+            System.out.println("event not found");
+            return "events/error";
+        }
+        event.removeAttendee(user.getUid());
+            System.out.println("Successfully cancelled sign up for event");
+            System.out.println("All attendees: "+event.getAttendees());
+            eventRepo.save(event);
+
+        /* 
+        try {
+            event.removeAttendee(user.getUid());
+            System.out.println("Successfully cancelled sign up for event");
+            System.out.println("All attendees: "+event.getAttendees());
+            eventRepo.save(event);
+
+
+        } catch(Exception e) {
+            System.out.println("error removing attendee from list");
+        }
+        */
+
+
+
+        return "redirect:/events/view/{eid}";
+
+    }
     
 }

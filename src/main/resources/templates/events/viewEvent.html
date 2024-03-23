@@ -14,7 +14,11 @@
         <p th:text="${event.body}"></p>
         <form method="post" th:action="@{/events/view/{eid}/signup(eid=${event.eid})}">
             <!-- <button class="btn btn-primary" type="submit" value="SEND">Sign Up</button> -->
-            <input type="submit">
+            <input type="submit"> sign up
+        </form>
+
+        <form method="post" th:action="@{/events/view/{eid}/cancel(eid=${event.eid})}">
+            <input type="submit"> cancel
         </form>
     </main>
 </body>

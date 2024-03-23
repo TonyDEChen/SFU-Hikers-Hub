@@ -102,5 +102,18 @@ public class Event {
         // }
     }
 
-    
+    public void removeAttendee(int uid)
+    {
+        
+        System.out.println("removing " + uid);
+        for(int i = 0; i < this.attendees.size(); i++)
+        {
+            System.out.println("test " + i);
+            if(Integer.valueOf(uid) == Integer.valueOf(this.attendees.get(i)))
+            {
+                this.attendees.remove(i);
+                break;
+            }
+        }
+    }
 }
