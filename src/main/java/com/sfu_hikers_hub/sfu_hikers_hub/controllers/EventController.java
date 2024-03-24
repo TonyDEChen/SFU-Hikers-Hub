@@ -17,6 +17,9 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 @Controller
 public class EventController {
@@ -29,6 +32,9 @@ public class EventController {
         System.out.println("Getting all events");
         User user = (User)session.getAttribute("session_user");
         List<Event> events = eventRepo.findAll();
+
+        //sorts view by latest 
+        Collections.reverse(events);
         model.addAttribute("events", events);
         model.addAttribute("user", user);
         return "events/viewAllEvents";

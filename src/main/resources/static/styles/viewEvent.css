@@ -1,0 +1,44 @@
+.details {
+    margin-top: 70px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.details h1 {
+    color: rgb(179, 27, 0);
+    margin-bottom: 10px;
+}
+
+.important {
+    margin-bottom: 10px;
+    color: rgb(179, 27, 0);
+    font-weight: bold;
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+.form-container form {
+    display: inline-block;
+}
+
+.buttons {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+input[type="submit"] {
+    background-color: rgb(179, 27, 0);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+}
+input[type="submit"]:hover {
+    background-color: #000000;
+}
