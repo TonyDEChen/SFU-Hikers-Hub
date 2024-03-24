@@ -18,7 +18,6 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Collections;
-import java.util.Comparator;
 
 
 @Controller
@@ -88,6 +87,16 @@ public class EventController {
             if(event == null) return "events/error";
             model.addAttribute("event", event);
             model.addAttribute("user", user);
+
+            List<Integer> usersInEvent = event.getAttendees();
+            for(int i = 0; i < usersInEvent.size(); i++)
+            {
+                if(user.getUid() == usersInEvent.get(i))
+                {
+                    //alternate view for users already signed up
+                    return "events/viewEventAlt";
+                }
+            }
             return "events/viewEvent";
         }catch(Exception e){
             System.out.println("Error finding event");
