@@ -1,0 +1,46 @@
+.container-fluid {
+  padding: 20px;
+}
+
+.add-event-container {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top:70px;
+}
+
+.add-event-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.add-event-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-event-container label {
+  font-weight: bold;
+}
+
+.add-event-container input[type="text"],
+.add-event-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid rgb(179, 27, 0);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.add-event-container input[type="submit"] {
+  background-color: rgb(179, 27, 0);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-event-container input[type="submit"]:hover {
+  background-color: #000000;
+}

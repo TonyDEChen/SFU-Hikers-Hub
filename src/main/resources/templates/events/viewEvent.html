@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/global.css">
+    <link rel="stylesheet" type="text/css" href="/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/styles/footer.css">
+    <link rel="stylesheet" type=text/css href="/styles/viewEvent.css">
+    <title>event</title>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="container-left">
+                <a class="navbar-brand" href="/">
+                    <img src="/images/logo.png" alt="Logo" width="64" height="64">
+                </a>
+                <a href="/info" class="nav-link">Info</a>
+                <a href="/gallery" class="nav-link">Gallery</a>
+                <a href="/posts/view" class="nav-link">Forum</a>
+                <a href="/events/view" class="nav-link">Events</a>
+            </div>
+            <div class="container-right">
+                <a th:if="${user != null}" href="/logout" class="nav-link">Logout</a>
+                <a th:if="${user == null}" href="/login" class="nav-link">Login</a>
+                <a th:if="${user == null}" ref="/register" class="nav-link">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="details">
+            <h1 th:text="${event.title}"></h1>
+            Posted by <p th:text="${event.op}"></p>
+            <p class="important" th:text="${event.location}"></p>
+            <p class="important" th:text="${event.time}"></p>
+            <p class="body" th:text="${event.body}"></p>
+        </div>
+
+        <div class="buttons">
+            <form method="post" th:if="${user != null}" th:action="@{/events/view/{eid}/signup(eid=${event.eid})}">
+                <!-- <button class="btn btn-primary" type="submit" value="SEND">Sign Up</button> -->
+                <input type="submit" value = "Signup">
+            </form>
+        </div>
+    </main>
+
+    <div id="cusdis_thread" th:if="${user != null}"
+        data-host="https://cusdis.com"
+        data-app-id="a4002586-2b13-49ab-901c-9cfb9e6bff42"
+        th:data-page-id= ${event.eid}
+        data-page-url="{{ PAGE_URL }}"
+        data-page-title="{{ PAGE_TITLE }}"
+        ></div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+</body>
+</html>
