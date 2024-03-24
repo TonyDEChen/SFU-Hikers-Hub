@@ -1,18 +1,17 @@
-/* Reset default styles */
+/* 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-  /* Style for the container of each forum post */
+
   .event-container {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-top: 20px;
   }
   
-  /* Style for the post title */
   .event-title {
     font-size: 20px;
     font-weight: bold;
@@ -20,14 +19,12 @@
     margin-bottom: 5px;
   }
   
-  /* Style for the post author */
   .event-author {
     font-style: italic;
     color: #666;
     margin-bottom: 5px;
   }
   
-  /* Style for the post content */
   .event-content {
     font-size: 16px;
     color: #444;
@@ -35,7 +32,6 @@
     margin-bottom: 10px;
   }
   
-  /* Style for the post timestamp */
   .event-timestamp {
     font-size: 12px;
     color: #888;
@@ -48,4 +44,57 @@
   .add-event-button {
     margin-top: 70px;
   }
-  
+  */
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styles for add-event-button */
+.add-event-button {
+    margin-bottom: 20px;
+}
+
+/* Styles for event-list-container */
+.event-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+
+/* Styles for event-container */
+.event-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    width: 600px;
+}
+
+/* Styles for post-title */
+.post-title {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Styles for delete button */
+button[type="submit"] {
+    background-color: rgb(179, 27, 0);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: rgb(0, 0, 0);
+}
