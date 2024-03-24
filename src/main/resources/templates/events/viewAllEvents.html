@@ -32,9 +32,9 @@
     </header>
     
     <main>
-        <div class = "add-event-button">
-            <form action = "/events/add">
-                <button th:if="${user != null and user.isAdmin}" class="nav-link"> Add Event </button> 
+        <div>
+            <form action = "/events/add" class="add-event-button">
+                <button type="input" th:if="${user != null and user.isAdmin}" class="nav-link"> Create New Event </button> 
             </form>
         </div>
         <div class = "event-list-container">
