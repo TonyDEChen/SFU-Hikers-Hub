@@ -50,7 +50,7 @@ public class PostController {
         }
         System.out.println("Adding post");
         try {
-            String op = "temp";
+            String op = user.getUsername(); // "temp";
             String title = newpost.get("title");
             String body = newpost.get("body");
             postRepo.save(new Post(op, title, body));
