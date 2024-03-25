@@ -43,6 +43,29 @@
     border-radius: 4px;
 }
 
+.checklist-name{
+    position: relative;
+    bottom: 10px;
+}
+
+.checklist{
+    position: relative;
+    left: 15px;
+    bottom: 10px;
+    list-style: none;
+}
+
+.list-item{
+    position: relative;
+    padding-left: 20px;
+    margin: 5px;
+    color: #D03636;
+}
+
+.list-item.done{
+    display: none;
+}
+
 .link {
     text-align: center;
 }
