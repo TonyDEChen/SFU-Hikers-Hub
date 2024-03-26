@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/global.css">
     <link rel="stylesheet" type="text/css" href="/styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="/styles/footer.css">
-    <link rel="stylesheet" type="text/css" href="/styles/forumPage.css">
+    <link rel="stylesheet" type="text/css" href="/styles/viewPost.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -38,14 +38,18 @@
             <p th:text="${post.body}"></p>
         </div>
 
-        <div id="cusdis_thread" th:if="${user != null}"
-        data-host="https://cusdis.com"
-        data-app-id="a4002586-2b13-49ab-901c-9cfb9e6bff42"
-        th:data-page-id= ${post.pid}
-        data-page-url="{{ PAGE_URL }}"
-        data-page-title="{{ PAGE_TITLE }}"
-        ></div>
-        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+        <h class="comments-header"> Comments Section</h>
+
+        <div class="comments">
+            <div id="cusdis_thread" th:if="${user != null}"
+            data-host="https://cusdis.com"
+            data-app-id="a4002586-2b13-49ab-901c-9cfb9e6bff42"
+            th:data-page-id= "'f' + ${post.pid}"
+            data-page-url="{{ PAGE_URL }}"
+            data-page-title="{{ PAGE_TITLE }}"
+            ></div>
+            <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+        </div>
     </main>
     
     <footer class="footer">
