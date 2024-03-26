@@ -28,6 +28,8 @@ public class EventController {
 
     @Autowired
     private EventRepository eventRepo;
+
+    @Autowired
     private UserRepository userRepo;
 
     @GetMapping("/events/view")
@@ -84,7 +86,6 @@ public class EventController {
     @GetMapping("/events/view/{eid}")
     public String viewEvent(@PathVariable int eid, Model model, HttpSession session){
         try{
-            
             User user = (User)session.getAttribute("session_user");
             if(user == null) return "redirect:/login";
             Event event = eventRepo.findByEid(eid);
@@ -94,13 +95,13 @@ public class EventController {
             List<Integer> attendees = event.getAttendees();
             for(int i = 0; i < attendees.size(); i++)
             {
+                System.out.println(userRepo.findByUid(attendees.get(i)).getFirstName());
                 attendeeList.add(userRepo.findByUid(attendees.get(i)));
             }
 
             model.addAttribute("event", event);
             model.addAttribute("user", user);
             model.addAttribute("list", attendeeList);
-            
 
             List<Integer> usersInEvent = event.getAttendees();
             for(int i = 0; i < usersInEvent.size(); i++)
@@ -112,10 +113,12 @@ public class EventController {
                 }
             }
             return "events/viewEvent";
+            
         }catch(Exception e){
             System.out.println("Error finding event");
             return "events/error";
         }
+        
     }
 
     @PostMapping("/events/view/{eid}/signup")
@@ -177,9 +180,6 @@ public class EventController {
             System.out.println("error removing attendee from list");
         }
         */
-
-
-
         return "redirect:/events/view/{eid}";
 
     }
