@@ -64,6 +64,14 @@ public class UserController {
             return "users/register";
         }
 
+        if (username.length() > 24) {
+            model.addAttribute("errorMessage", "Username must be 24 characters or less.");
+            model.addAttribute("firstName", firstName);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("email", email);
+            return "users/register";
+        }
+        
         if (userRepo.findByEmail(email) != null) {
             response.setStatus(409);
             model.addAttribute("errorMessage", "Email already exists");
@@ -144,7 +152,7 @@ public class UserController {
         }
         user.setPassword(Password);
         userRepo.save(user);
-        return "index";
+        return "redirect:/dashboard";
     }
     
     @GetMapping("/")

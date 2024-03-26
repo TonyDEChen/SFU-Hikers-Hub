@@ -3,7 +3,6 @@ package com.sfu_hikers_hub.sfu_hikers_hub.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 
 @Entity
 @Table(name = "events")

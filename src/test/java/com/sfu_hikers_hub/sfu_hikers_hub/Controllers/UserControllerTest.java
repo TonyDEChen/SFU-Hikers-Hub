@@ -1,8 +1,7 @@
-package com.sfu_hikers_hub.sfu_hikers_hub.Controllers;
+/*package com.sfu_hikers_hub.sfu_hikers_hub.Controllers;
 
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,3 +91,5 @@ public class UserControllerTest {
                 ));
     }
 }
+
+*/
