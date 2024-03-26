@@ -121,14 +121,17 @@ public class PostController {
     }
 
     @GetMapping("/posts/view/{pid}")
-    public String viewPost(@PathVariable int pid, Model model){
+    public String viewPost(@PathVariable int pid, Model model, HttpSession session){
         try{
+            User user = (User)session.getAttribute("session_user");
+
             System.out.println("Locating post");
             Post post = postRepo.findByPid(pid);
             if(post == null) return "posts/error";
 
             System.out.println("Found post");
             model.addAttribute("post", post);
+            model.addAttribute("user", user);
 
             return "posts/viewPost";
         }catch(Exception e){
