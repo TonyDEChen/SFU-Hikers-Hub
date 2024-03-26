@@ -1,12 +1,12 @@
-userInp = document.getElementById('username');
+//userInp = document.getElementById('username');
 
 passwordInp = document.getElementById('password');
 passwordCheckList = document.querySelectorAll(".list-item");
 
 
-userInp.addEventListener('keyup', function() {
-    username = userInp.value;
-})
+//userInp.addEventListener('keyup', function() {
+//    username = userInp.value;
+//})
 
 passwordInp.addEventListener('keyup', function() {
     
@@ -35,10 +35,10 @@ document.querySelector(".submit-button").addEventListener("click", function(even
         passwordCheckList[4].classList.contains("done")) ) {
         event.preventDefault();
         alert("Your password is too weak. Please re-enter a new password.");
-    } else if ((username.length >= 24)) {
-        event.preventDefault();
-        alert("Username exceeds the 24 character limit. Please re-enter a new username.");
-    }    
+    } //else if ((username.length >= 24)) {
+        //event.preventDefault();
+        //alert("Username exceeds the 24 character limit. Please re-enter a new username.");
+    //}    
 })
 
 

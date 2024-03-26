@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -120,8 +122,31 @@ public class UserController {
         
         return "users/adminDashboard";
     }
-    
 
+    @PostMapping("/changePassword")
+    public String changePassword(@RequestParam("old-password") String oldPassword,
+                                 @RequestParam("password") String Password,
+                                 @RequestParam("confirm-password") String confirmPassword,
+                                 HttpSession session,
+                                 Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "users/login";
+        }
+        if (!user.getPassword().equals(oldPassword)) {  //
+            model.addAttribute("errorMessage", "Incorrect old password.");
+            return "users/changePassword";
+        }
+        if (!(Password.equals(confirmPassword))) {
+            model.addAttribute("errorMessage", "New password and confirm password are not the same.");
+            System.out.println("New Password: " + Password + "\nConfirm Password: " + confirmPassword);
+            return "users/changePassword";
+        }
+        user.setPassword(Password);
+        userRepo.save(user);
+        return "index";
+    }
+    
     @GetMapping("/")
     public String home() {
         return "index";
@@ -140,6 +165,11 @@ public class UserController {
         } else {
             return "redirect:/dashboard";
         }
+    }
+
+    @GetMapping("/changePassword")
+    public String changePassword() {
+        return "users/changePassword";
     }
 
     @GetMapping("/logout")
