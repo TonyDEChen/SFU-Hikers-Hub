@@ -151,6 +151,7 @@ public class UserController {
             return "users/changePassword";
         }
         user.setPassword(Password);
+        userRepo.save(user);
         return "redirect:/dashboard";
     }
     
