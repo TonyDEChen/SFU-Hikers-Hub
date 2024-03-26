@@ -41,7 +41,7 @@ public class PostController {
         System.out.println("Getting all posts");
         List<Post> posts = postRepo.findAll(); // findAllByOrderByCreatedAtDesc();
         posts.sort(Comparator.comparing(Post::getCreatedAt, Comparator.nullsLast(Comparator.reverseOrder())));
-        model.addAttribute("ps", posts);
+        model.addAttribute("posts", posts);
         model.addAttribute("us", user);
         return "posts/forumPage";
     }

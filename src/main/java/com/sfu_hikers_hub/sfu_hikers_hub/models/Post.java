@@ -14,7 +14,6 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pid;
-
     private String op;
 
     @Column(length = 100)

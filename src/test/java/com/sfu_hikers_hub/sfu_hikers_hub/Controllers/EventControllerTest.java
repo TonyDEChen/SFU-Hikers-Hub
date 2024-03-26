@@ -19,16 +19,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.sfu_hikers_hub.sfu_hikers_hub.controllers.EventController;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Event;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.EventRepository;
-import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
 @WebMvcTest(EventController.class)
 public class EventControllerTest {
 
     @MockBean
     private EventRepository EventRepository;
-
-    @MockBean
-    private UserRepository userRepository;
 
     @Autowired
     private MockMvc mockMvc;
