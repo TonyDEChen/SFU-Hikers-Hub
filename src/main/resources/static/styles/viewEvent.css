@@ -11,6 +11,32 @@
     margin-bottom: 10px;
 }
 
+.listing {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.listing h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.listing ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listing li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 .important {
     margin-bottom: 10px;
     color: rgb(179, 27, 0);
