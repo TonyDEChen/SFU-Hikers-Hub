@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findByPid(int pid);
+
+    List<Post> findAllByOrderByCreatedAtDesc(); // Sort by most recent first
 }

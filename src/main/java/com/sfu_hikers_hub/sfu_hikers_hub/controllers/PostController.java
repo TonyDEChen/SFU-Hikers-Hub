@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.PostRepository;
@@ -16,6 +18,8 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.PostRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.util.Comparator;
 
 @Controller
 public class PostController {
@@ -26,7 +30,8 @@ public class PostController {
     @GetMapping("/posts/view")
     public String getAllPosts(Model model) {
         System.out.println("Getting all posts");
-        List<Post> posts = postRepo.findAll();
+        List<Post> posts = postRepo.findAll(); // findAllByOrderByCreatedAtDesc();
+        posts.sort(Comparator.comparing(Post::getCreatedAt, Comparator.nullsLast(Comparator.reverseOrder())));
         model.addAttribute("ps", posts);
         return "posts/forumPage";
     }
@@ -60,4 +65,11 @@ public class PostController {
         }
         return "redirect:/posts/view";
     }
+
+    @GetMapping("/posts/test")
+    @ResponseBody
+    public List<Post> testDatabaseConnection() {
+        return postRepo.findAll();
+    }
+
 }
