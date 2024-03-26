@@ -16,7 +16,11 @@ public class Post {
     private int pid;
 
     private String op;
+
+    @Column(length = 100)
     private String title;
+
+    @Column(length = 500)
     private String body;
     // private LocalDateTime createdAt;
 

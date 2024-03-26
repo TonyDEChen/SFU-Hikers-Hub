@@ -9,6 +9,15 @@
     <link rel="stylesheet" type="text/css" href="../styles/footer.css">
     <link rel="stylesheet" type="text/css" href="../styles/addPost.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .character-count {
+    display: block; /* Make the span element display as a block */
+    text-align: right; /* Align the text to the right */
+    margin-top: -20px; /* Adjust the margin to position it right under the input/textarea */
+    margin-right: 5px; /* Adjust the margin to not stick to the edge */
+    color: #777; /* Light grey color for the text */
+     }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -37,10 +46,12 @@
                     <form action="/posts/add" method="post" class="custom-form">
                         
                         <div class="custom-input-group">
-                            <input type="text" id="title" name="title" class="custom-input-large" placeholder="title">
+                            <input type="text" id="title" name="title" class="custom-input-large" placeholder="title" maxlength="100" oninput="updateTitleCount()">
+                            <span id="title-count" class="character-count">100 characters left</span>
                         </div>
                         <div class="custom-input-group">
-                            <input type="text" id="body" name="body" class="custom-input-large" placeholder="text">
+                            <textarea id="body" name="body" class="custom-input-large" placeholder="text" maxlength="500" oninput="updateBodyCount()"></textarea> <!--<input type="text" id="body" name="body" class="custom-input-large" placeholder="text" maxlength="500">-->
+                            <span id="body-count" class="character-count">500 characters left</span>
                         </div>
                     
                         <div class="custom-submit-container">
@@ -65,5 +76,39 @@
             </div>
         </div>
     </footer>
+    <script>
+        function updateTitleCount() {
+        const titleInput = document.getElementById('title');
+        const titleCount = document.getElementById('title-count');
+        var remainingTitle = 100 - titleInput.value.length;
+        titleCount.textContent = remainingTitle + '/100';
+        // const bodyInput = document.getElementById('body');
+        // const bodyCount = document.getElementById('body-count');
+        }
+
+        function updateBodyCount() {
+        var bodyInput = document.getElementById('body');
+        var bodyCount = document.getElementById('body-count');
+        var remainingBody = 500 - bodyInput.value.length;
+        bodyCount.textContent = remainingBody + '/500';
+    }
+
+    // Call these functions on page load to initialize the counters
+    updateTitleCount();
+    updateBodyCount();
+    
+        // function updateCharacterCount(input, countElement, maxLength) {
+        //     const remaining = maxLength - input.value.length;
+        //     countElement.textContent = `${remaining} characters left`;
+        // }
+    
+        // titleInput.addEventListener('input', () => {
+        //     updateCharacterCount(titleInput, titleCount, 100);
+        // });
+    
+        // bodyInput.addEventListener('input', () => {
+        //     updateCharacterCount(bodyInput, bodyCount, 500);
+        // });
+    </script>
 </body>
 </html>

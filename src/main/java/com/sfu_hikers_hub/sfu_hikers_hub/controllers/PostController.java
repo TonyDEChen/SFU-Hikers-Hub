@@ -58,6 +58,11 @@ public class PostController {
             String op = user.getUsername(); // "temp";
             String title = newpost.get("title");
             String body = newpost.get("body");
+
+            if (title.length() > 100 || body.length() > 500) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400 Bad Request
+                return "redirect:/posts/add"; // Redirect back to the form with an error message
+            }
             postRepo.save(new Post(op, title, body));
             response.setStatus(201);
         } catch (Exception e) {
