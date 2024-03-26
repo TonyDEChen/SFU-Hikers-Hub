@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -117,6 +118,22 @@ public class PostController {
     @ResponseBody
     public List<Post> testDatabaseConnection() {
         return postRepo.findAll();
+    }
+
+    @GetMapping("/posts/view/{pid}")
+    public String viewPost(@PathVariable int pid, Model model){
+        try{
+            System.out.println("Locating post");
+            Post post = postRepo.findByPid(pid);
+            if(post == null) return "posts/error";
+
+            System.out.println("Found post");
+            model.addAttribute("post", post);
+
+            return "posts/viewPost";
+        }catch(Exception e){
+            return "posts/error";
+        }
     }
 
 }

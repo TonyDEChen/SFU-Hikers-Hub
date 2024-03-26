@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SFU Hikers Hub - Forum</title>
-    <link rel="stylesheet" type="text/css" href="../styles/global.css">
-    <link rel="stylesheet" type="text/css" href="../styles/navbar.css">
-    <link rel="stylesheet" type="text/css" href="../styles/footer.css">
-    <link rel="stylesheet" type="text/css" href="../styles/forumPage.css">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/styles/global.css">
+    <link rel="stylesheet" type="text/css" href="/styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/styles/footer.css">
+    <link rel="stylesheet" type="text/css" href="/styles/forumPage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="container-left">
                 <a class="navbar-brand" href="/">
-                    <img src="../images/logo.png" alt="Logo" width="64" height="64">
+                    <img src="/images/logo.png" alt="Logo" width="64" height="64">
                 </a>
                 <a href="/info" class="nav-link">Info</a>
                 <a href="/gallery" class="nav-link">Gallery</a>
@@ -31,26 +31,14 @@
     </header>
 
     <main>
-        <div class="add-post-container">
-            <a href="addPost.html" class="add-post-btn" role="button">Add Post</a>
+        <div>
+            <h1 th:text="${post.title}"></h1>
+            Posted by <p th:text="${post.op}"></p>
+            <br>
+            <p th:text="${post.body}"></p>
         </div>
-        <div th:each="post:${posts}" class="post-container">
-            <div class="post-content">
-                <div class="post-header">
-                    <p class="post-text">
-                        <a class="post-title"  th:href="@{/posts/view/{id}(id=${post.pid})}"><strong th:text="${post.title}"></strong></a>
-                        
-                        <small class="post-body" th:text="${post.body}"></small>
-                    </p>
-                    <form action="/post/delete" method="post" th:if="${us != null and us.username == post.op}">
-                        <input type="hidden" name="pid" th:value="${post.pid}">
-                        <button type="submit" class="delete-post-btn" role="button">Delete</button>
-                    </form>                    
-                </div>
-            </div>
-        </div>
-    </main>    
-
+    </main>
+    
     <footer class="footer">
         <div class="footer-container">
             <p class="footer-copyright-text">SFU Hiking Club 2024 ©</p>
