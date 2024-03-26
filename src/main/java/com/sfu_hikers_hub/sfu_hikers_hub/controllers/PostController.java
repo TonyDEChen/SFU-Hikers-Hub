@@ -20,6 +20,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.Comparator;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class PostController {
@@ -28,11 +30,14 @@ public class PostController {
     private PostRepository postRepo;
 
     @GetMapping("/posts/view")
-    public String getAllPosts(Model model) {
+    public String getAllPosts(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("session_user");
         System.out.println("Getting all posts");
         List<Post> posts = postRepo.findAll(); // findAllByOrderByCreatedAtDesc();
         posts.sort(Comparator.comparing(Post::getCreatedAt, Comparator.nullsLast(Comparator.reverseOrder())));
         model.addAttribute("ps", posts);
+        model.addAttribute("us", user);
         return "posts/forumPage";
     }
 
@@ -67,6 +72,38 @@ public class PostController {
             response.setStatus(201);
         } catch (Exception e) {
             System.out.println("FAILED TO ADD POST");
+        }
+        return "redirect:/posts/view";
+    }
+
+    @PostMapping("/post/delete")
+    public String postMethodName(@RequestParam Map<String, String> post, HttpServletResponse response,
+        HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            // This means no session was found
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN); // Set the response status to 403 Forbidden
+            return "redirect:/login"; // Redirect the user to the login page
+        }
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            // This means no user is found in session, which implies the user is not logged
+            // in
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN); // Set the response status to 403 Forbidden
+            return "redirect:/login"; // Redirect the user to the login page
+        }
+        System.out.println("Deleting post");
+        try {
+            int pid = Integer.parseInt(post.get("pid"));
+            if (!user.getUsername().equals(postRepo.findByPid(pid).getOp())) {
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN); // 403 Forbidden
+                System.out.println("FORBIDDEN TO DELETE POST");
+                return "redirect:/posts/view"; // Redirect back to the forum page
+            }
+            postRepo.deleteById(pid);
+            response.setStatus(201);
+        } catch (Exception e) {
+            System.out.println("FAILED TO DELETE POST");
         }
         return "redirect:/posts/view";
     }

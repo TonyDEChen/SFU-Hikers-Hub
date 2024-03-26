@@ -40,6 +40,10 @@
                         <strong class="post-title" th:text="${post.title}"></strong>
                         <small class="post-body" th:text="${post.body}"></small>
                     </p>
+                    <form action="/post/delete" method="post" th:if="${us != null and us.username == post.op}">
+                        <input type="hidden" name="pid" th:value="${post.pid}">
+                        <button type="submit" class="delete-post-btn" role="button">Delete</button>
+                    </form>                    
                 </div>
             </div>
         </div>
