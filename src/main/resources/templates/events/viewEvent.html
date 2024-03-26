@@ -38,6 +38,10 @@
             <p class="body" th:text="${event.body}"></p>
         </div>
 
+        <div class="listing">
+            
+        </div>
+
         <div class="buttons">
             <form method="post" th:if="${user != null}" th:action="@{/events/view/{eid}/signup(eid=${event.eid})}">
                 <!-- <button class="btn btn-primary" type="submit" value="SEND">Sign Up</button> -->
