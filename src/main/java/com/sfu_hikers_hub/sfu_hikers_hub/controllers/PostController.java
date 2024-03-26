@@ -32,7 +32,12 @@ public class PostController {
     @GetMapping("/posts/view")
     public String getAllPosts(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("session_user");
+        User user;
+        if (session != null) {
+            user = (User) session.getAttribute("session_user");
+        } else {
+            user = null;
+        }
         System.out.println("Getting all posts");
         List<Post> posts = postRepo.findAll(); // findAllByOrderByCreatedAtDesc();
         posts.sort(Comparator.comparing(Post::getCreatedAt, Comparator.nullsLast(Comparator.reverseOrder())));
