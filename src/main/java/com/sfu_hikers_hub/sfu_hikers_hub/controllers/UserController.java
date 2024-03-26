@@ -141,7 +141,7 @@ public class UserController {
         if (user == null) {
             return "users/login";
         }
-        if (!user.getPassword().equals(oldPassword)) {  //
+        if (!user.getPassword().equals(oldPassword)) {  
             model.addAttribute("errorMessage", "Incorrect old password.");
             return "users/changePassword";
         }
@@ -151,7 +151,6 @@ public class UserController {
             return "users/changePassword";
         }
         user.setPassword(Password);
-        userRepo.save(user);
         return "redirect:/dashboard";
     }
     
