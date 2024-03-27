@@ -9,6 +9,7 @@ import org.hamcrest.Matchers;
 import static org.hamcrest.Matchers.*;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,12 +20,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.sfu_hikers_hub.sfu_hikers_hub.controllers.EventController;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Event;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.EventRepository;
+import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
 @WebMvcTest(EventController.class)
 public class EventControllerTest {
 
     @MockBean
     private EventRepository EventRepository;
+
+    @MockBean
+    private UserRepository UserRepository;
 
     @Autowired
     private MockMvc mockMvc;

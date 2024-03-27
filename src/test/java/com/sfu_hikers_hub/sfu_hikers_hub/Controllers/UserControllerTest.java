@@ -1,13 +1,8 @@
-/*package com.sfu_hikers_hub.sfu_hikers_hub.Controllers;
+package com.sfu_hikers_hub.sfu_hikers_hub.Controllers;
 
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hamcrest.Matchers;
-import static org.hamcrest.Matchers.*;
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -29,67 +24,38 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+
+    @BeforeAll
+    static void setup() {
+        System.out.println("Setting up");
+    }
+
     @Test
-    void testGetAllUsers() throws Exception {
+    public void testRedirect() throws Exception {
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/dashboard"))
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/login"))
+                .andExpect(MockMvcResultMatchers.view().name("redirect:/login"));
+    }
 
-        User u1 = new User();
-        u1.setUid(3123);
-        u1.setfirstName("Boom");
-        u1.setlastName("Bang");
-        u1.setEmail("wow@cool.com");
-        u1.setUsername("EpicBeast2");
-        u1.setPassword("Wowsers1!!!");
-        u1.setTotalKm(163);
-        u1.setTotalHikes(20);
-        u1.setAdmin(false);
-
-        User u2 = new User();
-        u2.setUid(3013);
-        u2.setfirstName("Frank");
-        u2.setlastName("Smith");
-        u2.setEmail("fire@emoji.com");
-        u2.setUsername("HolySmokes123");
-        u2.setPassword("howFire1!!!");
-        u2.setTotalKm(107);
-        u2.setTotalHikes(15);
-        u2.setAdmin(true);
-
-
-        List<User> users = new ArrayList<User>();
-        users.add(u1);
-        users.add(u2);
-
-        when(UserRepository.findAll()).thenReturn(users);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/users/all"))
+    @Test
+    public void testGetLogin() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
             .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.view().name("users/showAll"))
-            .andExpect(MockMvcResultMatchers.model().attribute("users", hasItem(
-                allOf(
-                    hasProperty("uid",          Matchers.is(3123)),
-                    hasProperty("firstName",    Matchers.is("Boom")),
-                    hasProperty("lastName",     Matchers.is("Bang")),
-                    hasProperty("email",        Matchers.is("wow@cool.com")),
-                    hasProperty("username",     Matchers.is("EpicBeast2")),
-                    hasProperty("password",     Matchers.is("Wowsers1!!!")),
-                    hasProperty("totalKm",      Matchers.is(163)),
-                    hasProperty("totalHikes",   Matchers.is(20)),
-                    hasProperty("isAdmin",      Matchers.is(false)))
-                )))
-            .andExpect(MockMvcResultMatchers.model().attribute("users", hasItem(
-                        allOf(
-                            hasProperty("uid",          Matchers.is(3013)),
-                            hasProperty("firstName",    Matchers.is("Frank")),
-                            hasProperty("lastName",     Matchers.is("Smith")),
-                            hasProperty("email",        Matchers.is("fire@emoji.com")),
-                            hasProperty("username",     Matchers.is("HolySmokes123")),
-                            hasProperty("password",     Matchers.is("howFire1!!!")),
-                            hasProperty("totalKm",      Matchers.is(107)),
-                            hasProperty("totalHikes",   Matchers.is(15)),
-                            hasProperty("isAdmin",      Matchers.is(true)))
-                        )
-                ));
+            .andExpect(MockMvcResultMatchers.view().name("users/login"));
+    }
+
+    @Test
+    public void testGetRegister() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/register"))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.view().name("users/register"));
+    }
+
+    @Test
+    public void testChangePassword() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/changePassword"))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.view().name("users/changePassword"));
     }
 }
 
-*/
