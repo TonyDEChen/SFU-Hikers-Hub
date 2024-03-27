@@ -42,7 +42,7 @@
                     </p>
                     <div class="right">
                         <a class="button" th:href="@{/posts/view/{id}(id=${post.pid})}">Comments</a>
-                        <form action="/post/delete" method="post" th:if="${us != null and us.username == post.op}">
+                        <form action="/post/delete" method="post" th:if="${us != null and us.username == post.op or us != null and us.isAdmin}">
                             <input type="hidden" name="pid" th:value="${post.pid}">
                             <button type="submit" class="button" role="button">Delete</button>
                         </form>  

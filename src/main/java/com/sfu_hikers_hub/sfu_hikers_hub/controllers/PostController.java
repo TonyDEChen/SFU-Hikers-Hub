@@ -101,7 +101,7 @@ public class PostController {
         System.out.println("Deleting post");
         try {
             int pid = Integer.parseInt(post.get("pid"));
-            if (!user.getUsername().equals(postRepo.findByPid(pid).getOp())) {
+            if (!user.getUsername().equals(postRepo.findByPid(pid).getOp()) && !user.isAdmin()) {
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN); // 403 Forbidden
                 System.out.println("FORBIDDEN TO DELETE POST");
                 return "redirect:/posts/view"; // Redirect back to the forum page
