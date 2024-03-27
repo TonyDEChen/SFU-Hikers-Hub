@@ -20,12 +20,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.sfu_hikers_hub.sfu_hikers_hub.controllers.PostController;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.PostRepository;
+import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
 @WebMvcTest(PostController.class)
 public class PostControllerTest {
 
     @MockBean
     private PostRepository PostRepository;
+
+    @MockBean
+    private UserRepository UserRepository;
 
     @Autowired
     private MockMvc mockMvc;
