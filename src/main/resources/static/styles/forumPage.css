@@ -20,8 +20,8 @@ main {
     text-decoration: none;
     vertical-align: middle;
     cursor: pointer;
-    background-color: #007bff;
-    border: 1px solid #007bff;
+    background-color: rgb(179, 27, 0);
+    border: 1px solid rgb(0, 0, 0);
     padding: .375rem .75rem;
     font-size: 1rem;
     border-radius: .25rem;

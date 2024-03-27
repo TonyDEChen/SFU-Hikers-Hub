@@ -19,8 +19,7 @@
                 <a class="navbar-brand" href="/">
                     <img src="../images/logo.png" alt="Logo" width="64" height="64">
                 </a>
-                <a href="/info" class="nav-link">Info</a>
-                <a href="/gallery" class="nav-link">Gallery</a>
+
                 <a href="/posts/view" class="nav-link">Forum</a>
                 <a href="/events/view" class="nav-link">Events</a>
             </div>
@@ -38,9 +37,13 @@
                 <button type="input" th:if="${user != null and user.isAdmin}" class="nav-link"> Create New Event </button> 
             </form>
         </div>
+        <div class="Headertitle">
+            Upcoming Events
+        </div>
         <div class = "event-list-container">
             <div class = "event-container" th:each="event: ${events}">
                 <a class="post-title" th:text="${event.title}" th:href="@{/events/view/{id}(id=${event.eid})}"></a>
+                <h class="Location" th:text="${event.location}"></h>
                 <form action="/events/remove" method="post" th:if="${user != null and user.isAdmin}" onclick="return confirm('Are you sure want to delete this event? This cannot be undone');">
                     <input type="hidden" id="eid" name="eid" th:value="${event.eid}">
                     <button type="submit" value="SEND">Delete Event</button>

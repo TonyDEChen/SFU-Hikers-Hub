@@ -17,8 +17,7 @@
                 <a class="navbar-brand" href="/">
                     <img src="../images/logo.png" alt="Logo" width="64" height="64">
                 </a>
-                <a href="/info" class="nav-link">Info</a>
-                <a href="/gallery" class="nav-link">Gallery</a>
+
                 <a href="/posts/view" class="nav-link">Forum</a>
                 <a href="/events/view" class="nav-link">Events</a>
             </div>
@@ -42,7 +41,7 @@
                     </p>
                     <div class="right">
                         <a class="button" th:href="@{/posts/view/{id}(id=${post.pid})}">Comments</a>
-                        <form action="/post/delete" method="post" th:if="${us != null and us.username == post.op or us != null and us.isAdmin}">
+                        <form action="/post/delete" method="post" th:if="${us != null and us.username == post.op or us != null and us.isAdmin}" onclick="return confirm('Are you sure want to delete this event? This cannot be undone');">
                             <input type="hidden" name="pid" th:value="${post.pid}">
                             <button type="submit" class="button" role="button">Delete</button>
                         </form>  

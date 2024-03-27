@@ -1,46 +1,38 @@
-  main {
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-/* Styles for add-event-button */
-
-/*
-.add-event-button {
-    border: none;
-    padding: 16px;
-    background-color: rgb(81, 150, 253);
-    width: 300px; 
-    border-radius: 5px;
-    margin-top: 70px;
-    margin-bottom: 20px;
-}
-*/
-
-
-/* Styles for event-list-container */
 
 .event-list-container { 
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
+  margin-top: 80px;
 }
-
-/* Styles for event-container */
 
 .event-container {
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 3px solid rgb(179, 27, 0);
     border-radius: 5px;
     width: 80%;
     width: 600px;
+    background-color: #f8f9fa;
 }
 
+.event-container:hover {
+  width: 650px;
+  background-color: #b3b3b3;
+}
 
-/* Styles for post-title */
+.Headertitle {
+  margin-top: 80px;
+  font-size: 30px;
+  font-weight:bold;
+  color: #333;
+}
+
 .post-title {
   text-decoration: none;
   color: #333;
@@ -50,7 +42,6 @@
   display: block;
 }
 
-/* Styles for delete button */
 button[type="submit"] {
   background-color: rgb(179, 27, 0);
   color: #fff;
@@ -67,10 +58,10 @@ button[type="submit"]:hover {
 
 button[type="input"] {
   margin-top: 70px;
-  background-color: rgb(135, 165, 211);
+  background-color: rgb(179, 27, 0);
   color: #fff;
-  width: 300px;
-  height: 100px;
+  width: 200px;
+  height: 60px;
   border-radius: 10px;
 }
 
