@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
@@ -14,6 +15,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.ui.Model;
@@ -156,7 +159,15 @@ public class UserController {
     }
     
     @GetMapping("/")
-    public String home() {
+    public String home(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        User user;
+        if (session != null) {
+            user = (User) session.getAttribute("session_user");
+        } else {
+            user = null;
+        }
+        model.addAttribute("us", user);
         return "index";
     }
 

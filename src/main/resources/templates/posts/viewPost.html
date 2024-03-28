@@ -17,14 +17,15 @@
                 <a class="navbar-brand" href="/">
                     <img src="/images/logo.png" alt="Logo" width="64" height="64">
                 </a>
-
+                <a href="/dashboard" class="nav-link">Dashboard</a>
                 <a href="/posts/view" class="nav-link">Forum</a>
                 <a href="/events/view" class="nav-link">Events</a>
             </div>
             <div class="container-right">
-                <a href="/login" class="nav-link" th:if="${user == null}">Login</a>
-                <a href="/register" class="nav-link" th:if="${user == null}">Register</a>
-                <a href="/logout" class="nav-link" th:if="${user != null}">Logout</a>
+                <a href="/login" class="nav-link" th:if="${us == null}">Login</a>
+                <a href="/register" class="nav-link" th:if="${us == null}">Register</a>
+                <a href="/logout" class="nav-link" th:if="${us != null}">Logout</a>
+                <a href="/changePassword" class="nav-link" th:if="${us != null}">Change Password</a>
             </div>
         </div>
     </header>

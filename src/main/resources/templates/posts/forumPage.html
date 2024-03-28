@@ -17,7 +17,7 @@
                 <a class="navbar-brand" href="/">
                     <img src="../images/logo.png" alt="Logo" width="64" height="64">
                 </a>
-
+                <a href="/dashboard" class="nav-link">Dashboard</a>
                 <a href="/posts/view" class="nav-link">Forum</a>
                 <a href="/events/view" class="nav-link">Events</a>
             </div>
@@ -25,12 +25,13 @@
                 <a href="/login" class="nav-link" th:if="${us == null}">Login</a>
                 <a href="/register" class="nav-link" th:if="${us == null}">Register</a>
                 <a href="/logout" class="nav-link" th:if="${us != null}">Logout</a>
+                <a href="/changePassword" class="nav-link" th:if="${us != null}">Change Password</a>
             </div>
         </div>
     </header>
     <main>
         <div class="add-post-container">
-            <a href="addPost.html" class="button" role="button">Add Post</a>
+            <a href="/posts/add" class="button" role="button">Add Post</a>
         </div>
         <div th:each="post:${posts}" class="post-container">
             <div class="post-content">

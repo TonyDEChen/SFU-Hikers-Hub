@@ -139,4 +139,13 @@ public class PostController {
         }
     }
 
+    @GetMapping("/posts/add")
+    public String addPostForm(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("us", user);
+        return "posts/addPost";
+    }
 }
