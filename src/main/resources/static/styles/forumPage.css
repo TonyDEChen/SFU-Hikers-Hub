@@ -20,7 +20,7 @@ main {
     text-decoration: none;
     vertical-align: middle;
     cursor: pointer;
-    background-color: rgb(179, 27, 0);
+    background-color: var(--accent-color);
     border: 1px solid rgb(0, 0, 0);
     padding: .375rem .75rem;
     font-size: 1rem;

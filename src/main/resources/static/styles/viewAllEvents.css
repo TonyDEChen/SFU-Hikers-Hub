@@ -14,7 +14,7 @@ main {
 .event-container {
     margin-bottom: 20px;
     padding: 10px;
-    border: 3px solid rgb(179, 27, 0);
+    border: 3px solid var(--accent-color);
     border-radius: 5px;
     width: 80%;
     width: 600px;
@@ -43,7 +43,7 @@ main {
 }
 
 button[type="submit"] {
-  background-color: rgb(179, 27, 0);
+  background-color: var(--accent-color);
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -58,7 +58,7 @@ button[type="submit"]:hover {
 
 button[type="input"] {
   margin-top: 70px;
-  background-color: rgb(179, 27, 0);
+  background-color: var(--accent-color);
   color: #fff;
   width: 200px;
   height: 60px;

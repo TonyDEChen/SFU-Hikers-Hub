@@ -27,7 +27,7 @@
                 <a th:if="${user != null}" href="/logout" class="nav-link">Logout</a>
                 <a th:if="${user != null}" href="/changePassword" class="nav-link">Change Password</a>
                 <a th:if="${user == null}" href="/login" class="nav-link">Login</a>
-                <a th:if="${user == null}" ref="/register" class="nav-link">Register</a>
+                <a th:if="${user == null}" href="/register" class="nav-link">Register</a>
             </div>
         </div>
     </header>

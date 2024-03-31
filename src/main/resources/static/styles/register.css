@@ -59,7 +59,7 @@
     position: relative;
     padding-left: 20px;
     margin: 5px;
-    color: #D03636;
+    color: var(--accent-color);
 }
 
 .list-item.done{
