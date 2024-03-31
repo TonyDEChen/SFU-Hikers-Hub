@@ -12,7 +12,7 @@
 }
 
 .hero-title {
-    color: maroon;
+    color: var(--accent-color);
     font-size: 3rem;
     font-weight: bold;
 }
@@ -58,7 +58,6 @@
 
 .mission-title {
     font-size: 2rem;
-    color: maroon;
     font-weight: bold;
     text-align: center;
 }
@@ -80,7 +79,6 @@
 
 .achievements-title {
     font-size: 2rem;
-    color: maroon;
     font-weight: bold;
     text-align: center;
 }
@@ -107,6 +105,17 @@
     border-radius: 4px;
 }
 
+.achievement-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.achievement-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 .achievement-text {
     line-height: 1.5;
 }
@@ -114,7 +123,6 @@
 @media screen and (max-width: 600px) {
     .achievement {
         flex-direction: column;
-        gap: 10px;
     }
 
     .achievement:nth-child(even) {
@@ -147,7 +155,6 @@
 
 .places-title {
     font-size: 2rem;
-    color: maroon;
     font-weight: bold;
 }
 

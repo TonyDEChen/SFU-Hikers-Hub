@@ -1,5 +1,5 @@
 .navbar {
-    background: white;
+    background: var(--accent-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
@@ -39,11 +39,12 @@
 
 .nav-link, .footer-link {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 1rem;
     transition: all 200ms ease-in-out;
+    font-weight: bold;
 }
 
-.nav-link:hover, .footer-link:hover {
-    color: maroon;
+.nav-link:hover {
+    opacity: 0.75;
 }

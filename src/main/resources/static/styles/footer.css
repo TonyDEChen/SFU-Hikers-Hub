@@ -1,5 +1,5 @@
 .footer {
-    background: white;
+    background: var(--accent-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
@@ -23,6 +23,7 @@
 
 .footer-copyright-text {
     font-size: 1rem;
+    color: white;
 }
 
 @media screen and (max-width: 600px) {
@@ -30,4 +31,8 @@
         justify-content: center;
         gap: 10px;
     }
+}
+
+.footer-link:hover {
+    opacity: 0.75;
 }
