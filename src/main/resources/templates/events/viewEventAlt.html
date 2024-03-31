@@ -39,7 +39,7 @@
         </div>
 
         <div class="listing">
-            <h1> Members attending </h1>
+            <h1 th:text="'Members attending ' + ${event.numAttendees()} + '/' + ${event.maxAttendees}">  </h1>
             <li th:each="user : ${list}" th:text="${user.firstName + ' ' + user.lastName}"></li>
         </div>
 

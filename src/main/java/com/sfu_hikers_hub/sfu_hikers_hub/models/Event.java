@@ -25,19 +25,21 @@ public class Event {
     private String time;
     private String body;
     private List<Integer> attendees = new ArrayList<>();
+    private int maxAttendees;
 
     public Event()
     {
         // this.attendees = new ArrayList<>();
     }
 
-    public Event(String op, String title, String location, String time, String body)
+    public Event(String op, String title, String location, String time, String body, int maxAttendees)
     {
         this.op = op;
         this.title = title;
         this.location = location;
         this.time = time;
         this.body = body;
+        this.maxAttendees = maxAttendees;
         // this.attendees = new ArrayList<>();
     }
 
@@ -51,6 +53,14 @@ public class Event {
 
     public void setOp(String op) {
         this.op = op;
+    }
+
+    public int getMaxAttendees() {
+        return maxAttendees;
+    }
+
+    public void setMaxAttendees(int maxAttendees) {
+        this.maxAttendees = maxAttendees;
     }
 
     public String getTitle() {
@@ -115,6 +125,16 @@ public class Event {
                 break;
             }
         }
+    }
+
+    public boolean isFull()
+    {
+        return attendees.size() >= maxAttendees;
+    }
+
+    public int numAttendees()
+    {
+        return attendees.size();
     }
 
 }

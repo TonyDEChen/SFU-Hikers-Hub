@@ -45,6 +45,9 @@
                 <label for="description">Description:</label><br>
                 <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
 
+                <label for="max participants">Max Participants:</label><br>
+                <input type="number" id="maxnum" name="maxnum" onkeypress="return /[0-9]/i.test(event.key)"><br>
+
                 <input id="create" type="submit" value="Submit">
             </form>
         </div>

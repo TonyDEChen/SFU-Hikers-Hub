@@ -67,12 +67,16 @@ public class EventController {
             String location = newevent.get("location");
             String time = newevent.get("time");
             String body = newevent.get("description");
-            eventRepo.save(new Event(op, title, location, time, body));
+            int maxAttendees = Integer.parseInt(newevent.get("maxnum"));
+
+            eventRepo.save(new Event(op, title, location, time, body, maxAttendees));
             response.setStatus(201);
+            
         }catch(Exception e){
             System.out.println("Failed to add event");
             return "events/error";
         }
+        
         return "redirect:/events/view";
     }
 
