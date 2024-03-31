@@ -11,3 +11,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
+
+:root {
+    --max-width: 1200px;
+}
