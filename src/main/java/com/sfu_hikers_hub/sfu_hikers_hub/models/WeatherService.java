@@ -7,6 +7,12 @@ import org.springframework.web.client.RestTemplate;
 public class WeatherService {
 
     //load this via the local file
-    private String apiKey;
+    //@Value("${WEATHER_KEY}")
+    private String apiKey = System.getenv("WEATHER_KEY");
     
+    private final RestTemplate restTemplate;
+
+    public WeatherService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 }

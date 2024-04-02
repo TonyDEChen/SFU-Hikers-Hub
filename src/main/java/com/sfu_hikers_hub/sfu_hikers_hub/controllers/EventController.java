@@ -19,6 +19,8 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -42,6 +44,7 @@ public class EventController {
         Collections.reverse(events);
         model.addAttribute("events", events);
         model.addAttribute("user", user);
+        System.out.println("test1");
         return "events/viewAllEvents";
     }
 

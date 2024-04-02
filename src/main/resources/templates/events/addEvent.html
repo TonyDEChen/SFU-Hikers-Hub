@@ -10,6 +10,8 @@
     <link rel="stylesheet" type = text/css href="../styles/addEvent.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="../newEventCheck.js"></script> 
+    <script src="/api/google-maps-api"></script>
+    <script src="/dist/location-picker.min.js"></script>
 </head>
 <body>
     <header class="navbar">
@@ -34,6 +36,12 @@
             <form action="/events/add" method="post">
                 <label for="title">Title:</label><br>
                 <input type="text" id="title" name="title" required><br><br>
+
+                <div id="map"></div>
+
+                <button id="confirmPosition">Confirm Position</button>
+                <p>On click position: <span id="onClickPositionView"></span></p>
+                <p>On idle position: <span id="onIdlePositionView"></span></p>
 
                 <label for="location">Location:</label><br>
                 <input type="text" id="location" name="location" required><br><br>
