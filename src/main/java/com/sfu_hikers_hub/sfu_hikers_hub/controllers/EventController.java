@@ -16,6 +16,7 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -191,7 +192,8 @@ public class EventController {
 
     }
     
-    private String apiKey = System.getenv("MAPS_KEY");
+    Dotenv dotenv = Dotenv.load();
+    private String apiKey = dotenv.get("MAPS_KEY");
 
     @GetMapping("/events/map-test")
     public String mapTest(Model model){
