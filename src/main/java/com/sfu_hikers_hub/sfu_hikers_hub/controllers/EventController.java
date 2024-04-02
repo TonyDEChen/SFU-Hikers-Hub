@@ -35,6 +35,9 @@ public class EventController {
     @Autowired
     private UserRepository userRepo;
 
+    Dotenv dotenv = Dotenv.load();
+    private String apiKey = dotenv.get("MAPS_KEY");
+
     @GetMapping("/events/view")
     public String getAllEvents(Model model, HttpSession session){
         System.out.println("Getting all events");
@@ -50,11 +53,12 @@ public class EventController {
     }
 
     @GetMapping("/events/add")
-    public String showAdd(HttpSession session){
+    public String showAdd(HttpSession session, Model model){
         User user = (User)session.getAttribute("session_user");
         if(user==null){
             return "redirect:/login";
         }else if(user.isAdmin()){
+            model.addAttribute("apiKey", apiKey);
             return "events/addEvent";
         }
         return "events/error";
@@ -191,9 +195,6 @@ public class EventController {
         return "redirect:/events/view/{eid}";
 
     }
-    
-    Dotenv dotenv = Dotenv.load();
-    private String apiKey = dotenv.get("MAPS_KEY");
 
     @GetMapping("/events/map-test")
     public String mapTest(Model model){
