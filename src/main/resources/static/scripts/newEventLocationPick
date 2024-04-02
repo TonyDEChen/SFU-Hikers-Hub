@@ -1,0 +1,30 @@
+var map = document.getElementById('map');
+var instance = new locationPicker(map, {
+    // picker options
+  }, {
+    // Google Maps Options
+});
+
+var confirmBtn = document.getElementById('confirmPosition');
+var onClickPositionView = document.getElementById('onClickPositionView');
+confirmBtn.onclick = function () {
+  var location = lp.getMarkerPosition();
+  onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+};
+
+google.maps.event.addListener(lp.map, 'idle', function (event) {
+    var location = lp.getMarkerPosition();
+    onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+  });
+
+  var instance = new locationPicker(map, {
+    // latitude
+    lat: 45.5017,
+    // longitude
+    lng: -73.5673,
+    // auto try and detect and set the marker to the the current user's location
+    setCurrentPosition: true 
+    
+  }, {
+    // Google Maps Options
+});

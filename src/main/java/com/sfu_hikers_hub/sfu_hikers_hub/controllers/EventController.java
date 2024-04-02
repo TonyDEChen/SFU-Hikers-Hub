@@ -16,8 +16,11 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +45,7 @@ public class EventController {
         Collections.reverse(events);
         model.addAttribute("events", events);
         model.addAttribute("user", user);
+        System.out.println("test1");
         return "events/viewAllEvents";
     }
 
@@ -67,12 +71,16 @@ public class EventController {
             String location = newevent.get("location");
             String time = newevent.get("time");
             String body = newevent.get("description");
-            eventRepo.save(new Event(op, title, location, time, body));
+            int maxAttendees = Integer.parseInt(newevent.get("maxnum"));
+
+            eventRepo.save(new Event(op, title, location, time, body, maxAttendees));
             response.setStatus(201);
+            
         }catch(Exception e){
             System.out.println("Failed to add event");
             return "events/error";
         }
+        
         return "redirect:/events/view";
     }
 
@@ -184,4 +192,13 @@ public class EventController {
 
     }
     
+    Dotenv dotenv = Dotenv.load();
+    private String apiKey = dotenv.get("MAPS_KEY");
+
+    @GetMapping("/events/map-test")
+    public String mapTest(Model model){
+        model.addAttribute("apiKey", apiKey);
+        System.out.println(apiKey);
+        return "events/mapTest";
+    }
 }

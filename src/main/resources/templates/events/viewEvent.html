@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="/styles/footer.css">
     <link rel="stylesheet" type=text/css href="/styles/viewEvent.css">
     <title>SFU Hikers Hub - Event</title>
+    
+    
 </head>
 <body>
     <header class="navbar">
@@ -39,15 +41,16 @@
         </div>
 
         <div class="listing">
-            <h1> Members attending </h1>
+            <h1 th:text="'Members attending ' + ${event.numAttendees()} + '/' + ${event.maxAttendees}">  </h1>
             <li th:each="user : ${list}" th:text="${user.firstName + ' ' + user.lastName}"></li>
         </div>
 
         <div class="buttons">
-            <form method="post" th:if="${user != null}" th:action="@{/events/view/{eid}/signup(eid=${event.eid})}">
+            <form method="post" th:if="${user != null and event.isFull() != true}" th:action="@{/events/view/{eid}/signup(eid=${event.eid})}">
                 <!-- <button class="btn btn-primary" type="submit" value="SEND">Sign Up</button> -->
                 <input type="submit" value = "Signup">
             </form>
+            <h1 th:if="${event.isFull()}"> Sorry, there are no available spots left.</h1>
         </div>
     </main>
 

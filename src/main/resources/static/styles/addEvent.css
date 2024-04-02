@@ -23,7 +23,8 @@
 }
 
 .add-event-container input[type="text"],
-.add-event-container textarea {
+.add-event-container textarea,
+.add-event-container input[type="number"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
