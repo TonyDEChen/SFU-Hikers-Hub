@@ -191,4 +191,12 @@ public class EventController {
 
     }
     
+    private String apiKey = System.getenv("MAPS_KEY");
+
+    @GetMapping("/events/map-test")
+    public String mapTest(Model model){
+        model.addAttribute("apiKey", apiKey);
+        System.out.println(apiKey);
+        return "events/mapTest";
+    }
 }
