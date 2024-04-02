@@ -134,6 +134,72 @@ public class UserController {
         return "users/adminDashboard";
     }
 
+    @PostMapping("/updateFirstName")
+    public String updateFirstName(@RequestParam("firstName") String firstName, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        user.setFirstName(firstName);
+        userRepo.save(user);
+        return "redirect:/account";
+    }
+
+    @PostMapping("/updateLastName")
+    public String updateLastName(@RequestParam("lastName") String lastName, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        user.setLastName(lastName);
+        userRepo.save(user);
+        return "redirect:/account";
+    }
+
+    @PostMapping("/updateUsername")
+    public String updateUsername(@RequestParam("username") String username, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        if (userRepo.findByUsername(username) != null) {
+            if (userRepo.findByUsername(username).getUid() != user.getUid()) {
+                model.addAttribute("user", user);
+                model.addAttribute("errorMessage", "Username already exists");
+                return "users/account";
+            } else {
+                return "redirect:/account";
+            }
+        }
+
+        user.setUsername(username);
+        userRepo.save(user);
+        return "redirect:/account";
+    }
+
+    @PostMapping("/updateEmail")
+    public String updateEmail(@RequestParam("email") String email, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        if (userRepo.findByEmail(email) != null) {
+            if (userRepo.findByEmail(email).getUid() != user.getUid()) {
+                model.addAttribute("user", user);
+                model.addAttribute("errorMessage", "Email already exists");
+                return "users/account";
+            } else {
+                return "redirect:/account";
+            }
+        }
+
+        user.setEmail(email);
+        userRepo.save(user);
+        return "redirect:/account";
+    }
+
     @PostMapping("/changePassword")
     public String changePassword(@RequestParam("old-password") String oldPassword,
                                  @RequestParam("password") String Password,
@@ -142,7 +208,7 @@ public class UserController {
                                  Model model) {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
-            return "users/login";
+            return "redirect:/login";
         }
         if (!user.getPassword().equals(oldPassword)) {  
             model.addAttribute("errorMessage", "Incorrect old password.");
@@ -189,6 +255,17 @@ public class UserController {
     @GetMapping("/changePassword")
     public String changePassword() {
         return "users/changePassword";
+    }
+
+    @GetMapping("/account")
+    public String account(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("user", user);
+            return "users/account";
+        }
     }
 
     @GetMapping("/logout")

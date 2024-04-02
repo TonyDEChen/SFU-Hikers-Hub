@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFU Hikers Hub - Account</title>
+    <link rel="stylesheet" type="text/css" href="styles/global.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
+    <link rel="stylesheet" type="text/css" href="styles/account.css">
+    <link rel="stylesheet" type="text/css" href="styles/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="container-left">
+                <a class="navbar-brand" href="/">
+                    <img src="images/logo.png" alt="Logo" width="64" height="64">
+                </a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+                <a href="/posts/view" class="nav-link">Forum</a>
+                <a href="/events/view" class="nav-link">Events</a>
+            </div>
+            <div class="container-right">
+                <a href="/logout" class="nav-link">Logout</a>
+                <a href="/account" class="nav-link">Account</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="account-container">
+            <p class="account-title">Account Information</p>
+            <div class="account-details">
+                <form action="/updateFirstName" method="post" class="account-detail">
+                    <label for="name" class="form-label">First Name</label>
+                    <input type="text" id="name" name="firstName" class="form-control" th:value="${user.firstName}" required>
+                    <button type="submit" class="button">Update</button>
+                </form>
+                <form action="/updateLastName" method="post" class="account-detail">
+                    <label for="surname" class="form-label">Last Name</label>
+                    <input type="text" id="surname" name="lastName" class="form-control" th:value="${user.lastName}" required>
+                    <button type="submit" class="button">Update</button>
+                </form>
+                <form action="/updateUsername" method="post" class="account-detail">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" th:value="${user.username}" required>
+                    <button type="submit" class="button">Update</button>
+                </form>
+                <form action="/updateEmail" method="post" class="account-detail">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" th:value="${user.email}" required>
+                    <button type="submit" class="button">Update</button>
+                </form>
+                <div class="account-detail">
+                    <p>Password</p>
+                    <p>********</p>
+                    <a href="/changePassword" class="button">Update</a>
+                </div>
+            </div>
+            <p class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-copyright-text">SFU Hiking Club 2024 ©</p>
+            <div class="footer-links">
+                <a href="hikers@sfu.ca" class="footer-link"><i class="bi bi-envelope-fill"></i></a>
+                <a href="https://go.sfss.ca/clubs/622/info" target="_blank" rel="noreferrer" class="footer-link"><i class="bi bi-globe"></i></a>
+                <a href="https://www.instagram.com/sfuhikers/" target="_blank" rel="noreferrer" class="footer-link"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.facebook.com/sfuhikers/" target="_blank" rel="noreferrer" class="footer-link"><i class="bi bi-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
