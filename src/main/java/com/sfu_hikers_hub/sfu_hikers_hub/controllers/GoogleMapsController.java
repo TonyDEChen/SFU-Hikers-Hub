@@ -27,12 +27,18 @@ public class GoogleMapsController {
     }
 
     @GetMapping("/google-maps-api")
-    public String getGoogleMapsApi()
+    public String getGoogleMapsApiKey()
     {
+        /* 
         String mapsApiKey = apiKey;
         String url = "https://maps.googleapis.com/maps/api/js?key=" + mapsApiKey;
 
+        System.out.println("pluh");
+
         return url;
+        */
+        System.out.println(apiKey);
+        return apiKey;
     }
 
     @GetMapping("/google-maps-data")

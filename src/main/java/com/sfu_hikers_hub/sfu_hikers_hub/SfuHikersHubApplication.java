@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SfuHikersHubApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SfuHikersHubApplication.class, args);
 	}
 

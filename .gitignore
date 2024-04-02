@@ -35,3 +35,4 @@ build/
 .vscode/
 
 keys.env
+.env
