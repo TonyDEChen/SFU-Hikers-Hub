@@ -26,6 +26,8 @@ public class Event {
     private String body;
     private List<Integer> attendees = new ArrayList<>();
     private int maxAttendees;
+    private double longitude;
+    private double latitude;
 
     public Event()
     {
@@ -41,6 +43,18 @@ public class Event {
         this.body = body;
         this.maxAttendees = maxAttendees;
         // this.attendees = new ArrayList<>();
+    }
+
+    public Event(String op, String title, String location, String time, String body, int maxAttendees, double longitude,
+            double latitude) {
+        this.op = op;
+        this.title = title;
+        this.location = location;
+        this.time = time;
+        this.body = body;
+        this.maxAttendees = maxAttendees;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public int getEid() {
@@ -77,6 +91,22 @@ public class Event {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public String getTime() {

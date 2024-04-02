@@ -76,8 +76,12 @@ public class EventController {
             String time = newevent.get("time");
             String body = newevent.get("description");
             int maxAttendees = Integer.parseInt(newevent.get("maxnum"));
+            double longitude = Double.parseDouble(newevent.get("longitude"));
+            double latitude = Double.parseDouble(newevent.get("latitude"));
 
-            eventRepo.save(new Event(op, title, location, time, body, maxAttendees));
+
+            // eventRepo.save(new Event(op, title, location, time, body, maxAttendees));
+            eventRepo.save(new Event(op, title, location, time, body, maxAttendees, longitude, latitude));
             response.setStatus(201);
             
         }catch(Exception e){

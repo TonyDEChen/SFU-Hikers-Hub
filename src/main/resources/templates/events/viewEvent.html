@@ -40,6 +40,8 @@
             <p class="body" th:text="${event.body}"></p>
         </div>
 
+        <div id="map"></div>
+
         <div class="listing">
             <h1 th:text="'Members attending ' + ${event.numAttendees()} + '/' + ${event.maxAttendees}">  </h1>
             <li th:each="user : ${list}" th:text="${user.firstName + ' ' + user.lastName}"></li>
