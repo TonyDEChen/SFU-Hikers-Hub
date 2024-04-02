@@ -9,7 +9,7 @@
             fetch('/api/google-maps-api')
                 .then(response => response.text())
                 .then(apiKey => {
-                  console.log("test:" + apiKey);
+                  //console.log("test:" + apiKey);
                     // Use the apiKey variable to initialize the map
                     const script = document.createElement('script');
                     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;

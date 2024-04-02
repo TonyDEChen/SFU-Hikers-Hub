@@ -10,6 +10,7 @@ import com.sfu_hikers_hub.sfu_hikers_hub.config.AppConfig;
 
 import io.micrometer.core.ipc.http.HttpSender.Response;
 import org.springframework.web.bind.annotation.RequestParam;
+import io.github.cdimascio.dotenv.*;
 
 
 @RestController
@@ -17,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class GoogleMapsController {
 
     //@Value("${MAPS_KEY}")
-    private String apiKey = System.getenv("MAPS_KEY");
+    Dotenv dotenv = Dotenv.load();
+    private String apiKey = dotenv.get("MAPS_KEY");
 
 
     private final RestTemplate restTemplate;
@@ -47,6 +49,12 @@ public class GoogleMapsController {
         String url = "https://maps.googleapis.com/maps/api/js?key=" + apiKey;
         String responseData = restTemplate.getForObject(url, String.class);
         return ResponseEntity.ok(responseData);
+    }
+
+    @GetMapping("/google-maps-url")
+    public String getGoogleMapsURL() {
+
+        return "https://maps.googleapis.com/maps/api/js?key=" + apiKey;
     }
     
 }
