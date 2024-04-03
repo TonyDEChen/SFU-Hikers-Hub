@@ -40,6 +40,7 @@ public class EventController {
 
     Dotenv dotenv = Dotenv.load();
     private String apiKey = dotenv.get("MAPS_KEY");
+    private String apiKeyWeather = dotenv.get("WEATHER_KEY");
 
     @GetMapping("/events/view")
     public String getAllEvents(Model model, HttpSession session){
@@ -129,9 +130,13 @@ public class EventController {
             model.addAttribute("user", user);
             model.addAttribute("list", attendeeList);
             model.addAttribute("apiKey", apiKey);
+            model.addAttribute("weatherkey", apiKeyWeather);
 
             model.addAttribute("lng", event.getLongitude());
             model.addAttribute("lat", event.getLatitude());
+
+            model.addAttribute("timestamp", event.getTimestamp());
+
 
             List<Integer> usersInEvent = event.getAttendees();
             for(int i = 0; i < usersInEvent.size(); i++)

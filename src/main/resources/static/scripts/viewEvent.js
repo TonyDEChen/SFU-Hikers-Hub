@@ -45,6 +45,7 @@ function initMap() {
     // });
 }
 
+
 // document.addEventListener("DOMContentLoaded", function() {
 //     // Create a map centered on the provided longitude and latitude
 //     var mapOptions = {

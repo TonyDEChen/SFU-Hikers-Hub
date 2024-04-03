@@ -11,6 +11,8 @@
 
     <input type="hidden" id="lng" th:value="${lng}">
     <input type="hidden" id="lat" th:value="${lat}">
+    <script src="/scripts/callOpenWeather.js" defer></script>
+    <script th:src="@{'https://api.openweathermap.org/data/2.5/weather?lat=' + ${lat} + '&lon=' + ${lng} + '&appid=' + ${weatherkey}}"></script>
     <script src="/scripts/viewEvent.js"></script>
     
 
