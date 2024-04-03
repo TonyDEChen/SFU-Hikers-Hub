@@ -9,7 +9,9 @@
     <link rel="stylesheet" type=text/css href="/styles/viewEvent.css">
     <title>SFU Hikers Hub - Event</title>
 
-    <script src="/scripts/viewEvent.js" defer></script>
+    <input type="hidden" id="lng" th:value="${lng}">
+    <input type="hidden" id="lat" th:value="${lat}">
+    <script src="/scripts/viewEvent.js"></script>
     
 
     <style>
@@ -45,8 +47,6 @@
             <h1 th:text="${event.title}"></h1>
             Posted by <p th:text="${event.op}"></p>
             <p class="important" th:text="${event.location}"></p>
-            <input type="hidden" id="lng" th:value="${lng}">
-            <input type="hidden" id="lat" th:value="${lat}">
             <p class="important" th:text="${event.time}"></p>
             <p class="body" th:text="${event.body}"></p>
         </div>
