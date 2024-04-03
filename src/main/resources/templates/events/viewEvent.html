@@ -8,7 +8,16 @@
     <link rel="stylesheet" type="text/css" href="/styles/footer.css">
     <link rel="stylesheet" type=text/css href="/styles/viewEvent.css">
     <title>SFU Hikers Hub - Event</title>
+
+    <script src="/scripts/viewEvent.js" defer></script>
     
+
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
     
 </head>
 <body>
@@ -36,6 +45,8 @@
             <h1 th:text="${event.title}"></h1>
             Posted by <p th:text="${event.op}"></p>
             <p class="important" th:text="${event.location}"></p>
+            <input type="hidden" id="lng" th:value="${lng}">
+            <input type="hidden" id="lat" th:value="${lat}">
             <p class="important" th:text="${event.time}"></p>
             <p class="body" th:text="${event.body}"></p>
         </div>
@@ -64,5 +75,8 @@
         data-page-title="{{ PAGE_TITLE }}"
         ></div>
         <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+
+        <script th:src="@{'https://maps.googleapis.com/maps/api/js?key=' + ${apiKey} + '&libraries=places&callback=initMap'}" defer></script>
 </body>
 </html>

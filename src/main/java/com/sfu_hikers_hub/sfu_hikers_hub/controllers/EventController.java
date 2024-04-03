@@ -128,6 +128,10 @@ public class EventController {
             model.addAttribute("event", event);
             model.addAttribute("user", user);
             model.addAttribute("list", attendeeList);
+            model.addAttribute("apiKey", apiKey);
+
+            model.addAttribute("lng", event.getLongitude());
+            model.addAttribute("lat", event.getLatitude());
 
             List<Integer> usersInEvent = event.getAttendees();
             for(int i = 0; i < usersInEvent.size(); i++)
