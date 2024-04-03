@@ -23,6 +23,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -80,9 +82,16 @@ public class EventController {
             double longitude = Double.parseDouble(newevent.get("longitude"));
             double latitude = Double.parseDouble(newevent.get("latitude"));
 
+            ZoneId pacificZoneId = ZoneId.of("America/Vancouver");
+            ZonedDateTime pacific = ZonedDateTime.of(time, pacificZoneId);
+            ZonedDateTime utc = pacific.withZoneSameInstant(pacificZoneId);
+
+            long timestamp = utc.toInstant().getEpochSecond();
 
             // eventRepo.save(new Event(op, title, location, time, body, maxAttendees));
-            eventRepo.save(new Event(op, title, location, time, body, maxAttendees, longitude, latitude));
+            // eventRepo.save(new Event(op, title, location, time, body, maxAttendees, longitude, latitude));
+            eventRepo.save(new Event(op, title, location, time, timestamp, body, maxAttendees, longitude, latitude));
+
             response.setStatus(201);
             
         }catch(Exception e){

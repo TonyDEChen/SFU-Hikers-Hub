@@ -26,6 +26,7 @@ public class Event {
     private String location;
     // private String time;
     private LocalDateTime time;
+    private long timestamp;
     private String body;
     private List<Integer> attendees = new ArrayList<>();
     private int maxAttendees;
@@ -54,6 +55,19 @@ public class Event {
         this.title = title;
         this.location = location;
         this.time = time;
+        this.body = body;
+        this.maxAttendees = maxAttendees;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public Event(String op, String title, String location, LocalDateTime time, long timestamp, String body,
+            int maxAttendees, double longitude, double latitude) {
+        this.op = op;
+        this.title = title;
+        this.location = location;
+        this.time = time;
+        this.timestamp = timestamp;
         this.body = body;
         this.maxAttendees = maxAttendees;
         this.longitude = longitude;
@@ -118,6 +132,14 @@ public class Event {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getBody() {
