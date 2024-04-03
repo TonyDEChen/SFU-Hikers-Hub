@@ -1,8 +1,10 @@
 package com.sfu_hikers_hub.sfu_hikers_hub.models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.cglib.core.Local;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,8 @@ public class Event {
     private String op;
     private String title;
     private String location;
-    private String time;
+    // private String time;
+    private LocalDateTime time;
     private String body;
     private List<Integer> attendees = new ArrayList<>();
     private int maxAttendees;
@@ -34,7 +37,7 @@ public class Event {
         // this.attendees = new ArrayList<>();
     }
 
-    public Event(String op, String title, String location, String time, String body, int maxAttendees)
+    public Event(String op, String title, String location, LocalDateTime time, String body, int maxAttendees)
     {
         this.op = op;
         this.title = title;
@@ -45,7 +48,7 @@ public class Event {
         // this.attendees = new ArrayList<>();
     }
 
-    public Event(String op, String title, String location, String time, String body, int maxAttendees, double longitude,
+    public Event(String op, String title, String location, LocalDateTime time, String body, int maxAttendees, double longitude,
             double latitude) {
         this.op = op;
         this.title = title;
@@ -109,11 +112,11 @@ public class Event {
         this.latitude = latitude;
     }
 
-    public String getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

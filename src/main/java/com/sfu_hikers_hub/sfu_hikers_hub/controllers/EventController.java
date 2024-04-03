@@ -22,6 +22,7 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -65,7 +66,7 @@ public class EventController {
     }
 
     @PostMapping("/events/add")
-    public String addEvent(@RequestParam Map<String, String> newevent, HttpServletResponse response, HttpSession session){
+    public String addEvent(@RequestParam Map<String, String> newevent, @RequestParam(name = "time") LocalDateTime time, HttpServletResponse response, HttpSession session){
         System.out.println("Adding event");
         try{
             User user = (User)session.getAttribute("session_user");
@@ -73,7 +74,7 @@ public class EventController {
             String op = user.getUsername();
             String title = newevent.get("title");
             String location = newevent.get("location");
-            String time = newevent.get("time");
+            // String time = newevent.get("time");
             String body = newevent.get("description");
             int maxAttendees = Integer.parseInt(newevent.get("maxnum"));
             double longitude = Double.parseDouble(newevent.get("longitude"));
