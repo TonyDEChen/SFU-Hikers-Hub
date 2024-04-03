@@ -10,7 +10,7 @@
     <link rel="stylesheet" type = text/css href="../styles/addEvent.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="/scripts/newEventCheck.js"></script> 
-    <script src="/scripts/addEvent.js"></script>
+    <script src="/scripts/addEvent.js" defer></script> 
     <script th:src="@{'https://maps.googleapis.com/maps/api/js?key=' + ${apiKey} + '&libraries=places'}"></script>
 </head>
 <body onload="initAutocomplete()">
