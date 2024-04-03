@@ -18,6 +18,39 @@ function initAutocomplete() {
         // document.getElementById('location_coordinates').value = latitude + ',' + longitude;
         document.getElementById('longitude').value = longitude;
         document.getElementById('latitude').value = latitude;
+
+        var weatherKey;
+
+        fetch("/weather/getWeatherKey")
+            .then(response=> {
+                if(!response.ok) {
+                    throw new Error("Error from WeatherController");
+                }
+                return response.text();
+            })
+            .then(data=> {
+                console.log("test");
+                weatherKey = data;
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+              });
+
+        var apiURL = 'https://history.openweathermap.org/data/2.5/aggregated/year?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey;
+        fetch(apiURL)
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error("Error from WeatherController");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+              });
     });
 }
 
