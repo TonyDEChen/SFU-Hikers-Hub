@@ -21,7 +21,8 @@ public class GoogleMapsController {
     //private String apiKey;
     //private String apiKey = System.getenv("WEATHER_KEY");
     
-    Dotenv dotenv = Dotenv.load();
+    // Dotenv dotenv = Dotenv.load();
+    Dotenv dotenv = Dotenv.configure().filename("keys.env").load();
     private String apiKey = dotenv.get("MAPS_KEY");
     
 
