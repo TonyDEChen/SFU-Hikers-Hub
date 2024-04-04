@@ -1,9 +1,26 @@
-.details {
+.info {
+    display:flex;
     margin-top: 70px;
+}
+
+
+.details {
+    /*margin-top: 70px;*/
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.errortext {
+    text-align: center;
+    font-size: 50px;
+    color: var(--accent-color);
+}
+
+#openweathermap-widget-11 {
+    flex: 1;
 }
 
 .details h1 {

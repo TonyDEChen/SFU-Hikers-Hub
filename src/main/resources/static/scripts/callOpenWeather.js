@@ -1,3 +1,12 @@
+var cid;
+
+function processData(data)
+{
+    var output = document.getElementById("test");
+    console.log("testing: " + data);
+    output.innerHTML = '<p>Temperature: ' + data.main.temp + '</p>';
+}
+
 async function getData()
 {
 
@@ -13,6 +22,8 @@ async function getData()
         var apiURL = 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey;
         console.log(apiURL);
 
+        var jsonDATA;
+
         fetch(apiURL)
         .then(response => {
             if(!response.ok) {
@@ -22,6 +33,12 @@ async function getData()
             })
             .then(data => {
                 console.log(data);
+                var output = document.getElementById("test");
+                //console.log(output.innerHTML);
+                //console.log("testing: " + data);
+                //output.innerHTML = '<p>city id: ' + data.id + '</p>';
+                cid = data.id;
+                loadWidget(cid);
 
             })
             .catch(error => {
@@ -29,10 +46,7 @@ async function getData()
     });
 }
 
-
-
-
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
     console.log("page is fully loaded");
     getData();
 });
