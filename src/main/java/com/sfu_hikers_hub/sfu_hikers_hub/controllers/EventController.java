@@ -38,9 +38,14 @@ public class EventController {
     @Autowired
     private UserRepository userRepo;
 
+    /* 
     Dotenv dotenv = Dotenv.load();
     private String apiKey = dotenv.get("MAPS_KEY");
     private String apiKeyWeather = dotenv.get("WEATHER_KEY");
+    */
+
+    private String apiKey = System.getenv("MAPS_KEY");
+    private String apiKeyWeather = System.getenv("WEATHER_KEY");
 
     @GetMapping("/events/view")
     public String getAllEvents(Model model, HttpSession session){
