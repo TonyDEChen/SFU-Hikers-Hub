@@ -10,15 +10,16 @@ import com.sfu_hikers_hub.sfu_hikers_hub.config.AppConfig;
 
 import io.micrometer.core.ipc.http.HttpSender.Response;
 import org.springframework.web.bind.annotation.RequestParam;
-import io.github.cdimascio.dotenv.*;
+//import io.github.cdimascio.dotenv.*;
 
 
 @RestController
 @RequestMapping("/api")
 public class GoogleMapsController {
 
-    //@Value("${MAPS_KEY}")
-    private String apiKey = System.getenv("WEATHER_KEY");
+    @Value("${gApiKey}")
+    private String apiKey;
+    //private String apiKey = System.getenv("WEATHER_KEY");
     /* 
     Dotenv dotenv = Dotenv.load();
     private String apiKey = dotenv.get("MAPS_KEY");
