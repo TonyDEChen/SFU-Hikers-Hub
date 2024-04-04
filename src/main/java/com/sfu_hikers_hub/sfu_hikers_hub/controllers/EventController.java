@@ -17,7 +17,7 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
 
-//import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -39,17 +39,17 @@ public class EventController {
     @Autowired
     private UserRepository userRepo;
 
-    @Value("${gApiKey}")
-    private String apiKey;
+    //@Value("${gApiKey}")
+    //private String apiKey;
 
-    @Value("${wApiKey}")
-    private String apiKeyWeather;
-    /* 
+    //@Value("${wApiKey}")
+    //private String apiKeyWeather;
+    
     Dotenv dotenv = Dotenv.load();
     private String apiKey = dotenv.get("MAPS_KEY");
     private String apiKeyWeather = dotenv.get("WEATHER_KEY");
     
-
+/* 
     private String apiKey = System.getenv("MAPS_KEY");
     private String apiKeyWeather = System.getenv("WEATHER_KEY");
     */

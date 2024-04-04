@@ -11,9 +11,9 @@ import com.sfu_hikers_hub.sfu_hikers_hub.config.AppConfig;
 
 import io.micrometer.core.ipc.http.HttpSender.Response;
 import org.springframework.web.bind.annotation.RequestParam;
-//import io.github.cdimascio.dotenv.*;
+import io.github.cdimascio.dotenv.*;
 
-//import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/weather")
 public class OpenWeatherController {
 
-    @Value("${wApiKey}")
-    private String apiKey;
+    //@Value("${wApiKey}")
+    //private String apiKey;
     //private String apiKey = System.getenv("WEATHER_KEY");
-    /* 
+     
     Dotenv dotenv = Dotenv.load();
     private String apiKey = dotenv.get("WEATHER_KEY");
-    */
+    
     
     private final RestTemplate restTemplate;
 
