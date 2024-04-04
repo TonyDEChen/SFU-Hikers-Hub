@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/weather")
 public class OpenWeatherController {
 
+    private String apiKey = System.getenv("WEATHER_KEY");
+    /* 
     Dotenv dotenv = Dotenv.load();
     private String apiKey = dotenv.get("WEATHER_KEY");
+    */
     
     private final RestTemplate restTemplate;
 

@@ -18,8 +18,11 @@ import io.github.cdimascio.dotenv.*;
 public class GoogleMapsController {
 
     //@Value("${MAPS_KEY}")
+    private String apiKey = System.getenv("WEATHER_KEY");
+    /* 
     Dotenv dotenv = Dotenv.load();
     private String apiKey = dotenv.get("MAPS_KEY");
+    */
 
 
     private final RestTemplate restTemplate;
