@@ -46,7 +46,7 @@ public class EventController {
     //private String apiKeyWeather;
     
     // Dotenv dotenv = Dotenv.load();
-    Dotenv dotenv = Dotenv.configure().filename("keys.env").load();
+    Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
     private String apiKey = dotenv.get("MAPS_KEY");
     private String apiKeyWeather = dotenv.get("WEATHER_KEY");
     

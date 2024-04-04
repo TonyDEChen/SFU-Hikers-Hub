@@ -26,7 +26,8 @@ public class OpenWeatherController {
     //private String apiKey = System.getenv("WEATHER_KEY");
      
     // Dotenv dotenv = Dotenv.load();
-    Dotenv dotenv = Dotenv.configure().filename("keys.env").load();
+    // Dotenv dotenv = Dotenv.configure().filename("keys.env").load();
+    Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
     private String apiKey = dotenv.get("WEATHER_KEY");
     
     
