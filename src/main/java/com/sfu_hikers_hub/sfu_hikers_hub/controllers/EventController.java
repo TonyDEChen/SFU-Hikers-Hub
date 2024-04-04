@@ -22,6 +22,9 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -34,6 +37,10 @@ public class EventController {
 
     @Autowired
     private UserRepository userRepo;
+
+    Dotenv dotenv = Dotenv.load();
+    private String apiKey = dotenv.get("MAPS_KEY");
+    private String apiKeyWeather = dotenv.get("WEATHER_KEY");
 
     @GetMapping("/events/view")
     public String getAllEvents(Model model, HttpSession session){
@@ -50,18 +57,19 @@ public class EventController {
     }
 
     @GetMapping("/events/add")
-    public String showAdd(HttpSession session){
+    public String showAdd(HttpSession session, Model model){
         User user = (User)session.getAttribute("session_user");
         if(user==null){
             return "redirect:/login";
         }else if(user.isAdmin()){
+            model.addAttribute("apiKey", apiKey);
             return "events/addEvent";
         }
         return "events/error";
     }
 
     @PostMapping("/events/add")
-    public String addEvent(@RequestParam Map<String, String> newevent, HttpServletResponse response, HttpSession session){
+    public String addEvent(@RequestParam Map<String, String> newevent, @RequestParam(name = "time") LocalDateTime time, HttpServletResponse response, HttpSession session){
         System.out.println("Adding event");
         try{
             User user = (User)session.getAttribute("session_user");
@@ -69,11 +77,22 @@ public class EventController {
             String op = user.getUsername();
             String title = newevent.get("title");
             String location = newevent.get("location");
-            String time = newevent.get("time");
+            // String time = newevent.get("time");
             String body = newevent.get("description");
             int maxAttendees = Integer.parseInt(newevent.get("maxnum"));
+            double longitude = Double.parseDouble(newevent.get("longitude"));
+            double latitude = Double.parseDouble(newevent.get("latitude"));
 
-            eventRepo.save(new Event(op, title, location, time, body, maxAttendees));
+            ZoneId pacificZoneId = ZoneId.of("America/Vancouver");
+            ZonedDateTime pacific = ZonedDateTime.of(time, pacificZoneId);
+            ZonedDateTime utc = pacific.withZoneSameInstant(pacificZoneId);
+
+            long timestamp = utc.toInstant().getEpochSecond();
+
+            // eventRepo.save(new Event(op, title, location, time, body, maxAttendees));
+            // eventRepo.save(new Event(op, title, location, time, body, maxAttendees, longitude, latitude));
+            eventRepo.save(new Event(op, title, location, time, timestamp, body, maxAttendees, longitude, latitude));
+
             response.setStatus(201);
             
         }catch(Exception e){
@@ -110,6 +129,14 @@ public class EventController {
             model.addAttribute("event", event);
             model.addAttribute("user", user);
             model.addAttribute("list", attendeeList);
+            model.addAttribute("apiKey", apiKey);
+            model.addAttribute("weatherkey", apiKeyWeather);
+
+            model.addAttribute("lng", event.getLongitude());
+            model.addAttribute("lat", event.getLatitude());
+
+            model.addAttribute("timestamp", event.getTimestamp());
+
 
             List<Integer> usersInEvent = event.getAttendees();
             for(int i = 0; i < usersInEvent.size(); i++)
@@ -191,9 +218,6 @@ public class EventController {
         return "redirect:/events/view/{eid}";
 
     }
-    
-    Dotenv dotenv = Dotenv.load();
-    private String apiKey = dotenv.get("MAPS_KEY");
 
     @GetMapping("/events/map-test")
     public String mapTest(Model model){

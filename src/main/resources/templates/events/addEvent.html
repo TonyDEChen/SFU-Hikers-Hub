@@ -9,10 +9,11 @@
     <link rel="stylesheet" type="text/css" href="../styles/footer.css">
     <link rel="stylesheet" type = text/css href="../styles/addEvent.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="../newEventCheck.js"></script> 
-
+    <script src="/scripts/newEventCheck.js"></script> 
+    <script src="/scripts/addEvent.js" defer></script> 
+    <script th:src="@{'https://maps.googleapis.com/maps/api/js?key=' + ${apiKey} + '&libraries=places'}"></script>
 </head>
-<body>
+<body onload="initAutocomplete()">
     <header class="navbar">
         <div class="container">
             <div class="container-left">
@@ -38,16 +39,18 @@
 
                 <label for="location">Location:</label><br>
                 <input type="text" id="location" name="location" required><br><br>
+                <input type="hidden" id="longitude" name="longitude">
+                <input type="hidden" id="latitude" name="latitude">
 
                 <label for="time">Date and Time:</label><br>
-                <!-- <input type="datetime-local" id="time" name="time" required><br><br> -->
-                <input type="text" id="time" name="time" maxlength="50" required><br><br>
+                <input type="datetime-local" id="time" name="time" required><br><br>
+                <!-- <input type="text" id="time" name="time" maxlength="50" required><br><br> -->
 
                 <label for="description">Description:</label><br>
                 <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
 
                 <label for="max participants">Max Participants:</label><br>
-                <input type="number" id="maxnum" name="maxnum" onkeypress="return /[0-9]/i.test(event.key)"><br>
+                <input type="number" min = 0 id="maxnum" name="maxnum" required onkeypress="return /[0-9]/i.test(event.key)"><br>
 
                 <input id="create" type="submit" value="Submit">
             </form>

@@ -41,14 +41,14 @@ public class EventControllerTest {
         e1.setOp("wow");
         e1.setTitle("Big Event");
         e1.setLocation("Big Place");
-        e1.setTime("10:30");
+        // e1.setTime("10:30");
         e1.setBody("Wowsers Event!");
 
         Event e2 = new Event();
         e2.setOp("hehy!");
         e2.setTitle("smaller event");
         e2.setLocation("Small Place");
-        e2.setTime("7:30");
+        // e2.setTime("7:30");
         e2.setBody("Smaller wow event");
 
         List<Event> events = new ArrayList<Event>();

@@ -8,6 +8,28 @@
     <link rel="stylesheet" type="text/css" href="/styles/footer.css">
     <link rel="stylesheet" type=text/css href="/styles/viewEvent.css">
     <title>SFU Hikers Hub - Event</title>
+
+    <input type="hidden" id="lng" th:value="${lng}">
+    <input type="hidden" id="lat" th:value="${lat}">
+    
+    <script th:src="@{'https://api.openweathermap.org/data/2.5/weather?lat=' + ${lat} + '&lon=' + ${lng} + '&appid=' + ${weatherkey}}"></script>
+    
+    
+    <script type='text/javascript' > 
+        //var cid = 0; 
+    </script>
+    <script src='//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/d3.min.js'></script>
+    <script src="/scripts/callOpenWeather.js"></script>
+    <script src="/scripts/viewEvent.js"></script>
+    <script src="/scripts/weatherWidget.js"></script>
+    
+
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -30,13 +52,19 @@
     </header>
 
     <main>
-        <div class="details">
-            <h1 th:text="${event.title}"></h1>
-            Posted by <p th:text="${event.op}"></p>
-            <p class="important" th:text="${event.location}"></p>
-            <p class="important" th:text="${event.time}"></p>
-            <p class="body" th:text="${event.body}"></p>
+        <div class="info">
+            <div class="details">
+                <h1 th:text="${event.title}"></h1>
+                Posted by <p th:text="${event.op}"></p>
+                <p class="important" th:text="${event.location}"></p>
+                <p class="important" th:text="${event.time}"></p>
+                <p class="body" th:text="${event.body}"></p>
+            </div>
+            <div id="openweathermap-widget-11"></div>
+            <div id="errortext" class="errortext"></div>
         </div>
+        
+        <div id="map"></div>
 
         <div class="listing">
             <h1 th:text="'Members attending ' + ${event.numAttendees()} + '/' + ${event.maxAttendees}">  </h1>
@@ -58,5 +86,6 @@
         data-page-title="{{ PAGE_TITLE }}"
         ></div>
         <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+        <script th:src="@{'https://maps.googleapis.com/maps/api/js?key=' + ${apiKey} + '&libraries=places&callback=initMap'}" defer></script>
 </body>
 </html>
