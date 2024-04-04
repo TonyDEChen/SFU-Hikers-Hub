@@ -1,14 +1,9 @@
-window.addEventListener("load", (event) => {
-    console.log("page is fully loaded");
+async function getData()
+{
 
-    
-    var weatherKey;
-
-
-    fetch("/weather/getWeatherKey")
+    var weatherKey = await fetch("/weather/getWeatherKey")
         .then(response => response.text())
         .then(data=> {
-            weatherKey = data;
             return data;
         })
 
@@ -16,7 +11,7 @@ window.addEventListener("load", (event) => {
         var latitude = parseFloat(document.getElementById("lat").value);
     
         var apiURL = 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + weatherKey;
-        console.log(apiUrl);
+        console.log(apiURL);
 
         fetch(apiURL)
         .then(response => {
@@ -32,8 +27,15 @@ window.addEventListener("load", (event) => {
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
     });
-            
-    });
+}
+
+
+
+
+window.addEventListener("load", (event) => {
+    console.log("page is fully loaded");
+    getData();
+});
     
 
     
