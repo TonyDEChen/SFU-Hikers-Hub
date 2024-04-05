@@ -23,10 +23,12 @@ public class GoogleMapsController {
     
     // Dotenv dotenv = Dotenv.load();
     // Dotenv dotenv = Dotenv.configure().filename("keys.env").load();
-    Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
-    private String apiKey = dotenv.get("MAPS_KEY");
-    
 
+    // Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
+    // private String apiKey = dotenv.get("MAPS_KEY");
+
+    Dotenv dotenv;
+    private String apiKey;
 
     private final RestTemplate restTemplate;
 
@@ -46,6 +48,14 @@ public class GoogleMapsController {
 
         return url;
         */
+
+        try {
+            dotenv = Dotenv.configure().directory("/etc/secrets/").load();
+        } catch (Exception e) {
+            dotenv = Dotenv.load();
+        }
+        this.apiKey = dotenv.get("MAPS_KEY");
+
         System.out.println(apiKey);
         return apiKey;
     }

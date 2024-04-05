@@ -46,9 +46,24 @@ public class EventController {
     //private String apiKeyWeather;
     
     // Dotenv dotenv = Dotenv.load();
-    Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
-    private String apiKey = dotenv.get("MAPS_KEY");
-    private String apiKeyWeather = dotenv.get("WEATHER_KEY");
+
+    // Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
+    // private String apiKey = dotenv.get("MAPS_KEY");
+    // private String apiKeyWeather = dotenv.get("WEATHER_KEY");
+
+    Dotenv dotenv;
+    private String apiKey;
+    private String apiKeyWeather;
+
+    public EventController(){
+        try {
+            dotenv = Dotenv.configure().directory("/etc/secrets/").load();
+        } catch (Exception e) {
+            dotenv = Dotenv.load();
+        }
+        this.apiKey = dotenv.get("MAPS_KEY");
+        this.apiKeyWeather = dotenv.get("WEATHER_KEY");
+    }
     
 /* 
     private String apiKey = System.getenv("MAPS_KEY");

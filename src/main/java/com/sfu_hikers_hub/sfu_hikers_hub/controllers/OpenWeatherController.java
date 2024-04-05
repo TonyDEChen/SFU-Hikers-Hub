@@ -27,14 +27,24 @@ public class OpenWeatherController {
      
     // Dotenv dotenv = Dotenv.load();
     // Dotenv dotenv = Dotenv.configure().filename("keys.env").load();
-    Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
-    private String apiKey = dotenv.get("WEATHER_KEY");
+
+    // Dotenv dotenv = Dotenv.configure().directory("/etc/secrets/").load();
+    // private String apiKey = dotenv.get("WEATHER_KEY");
     
+    Dotenv dotenv;
+    private String apiKey;
     
     private final RestTemplate restTemplate;
 
     public OpenWeatherController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
+
+        try {
+            dotenv = Dotenv.configure().directory("/etc/secrets/").load();
+        } catch (Exception e) {
+            dotenv = Dotenv.load();
+        }
+        this.apiKey = dotenv.get("WEATHER_KEY");
     }
 
     @GetMapping("/getWeatherKey")
