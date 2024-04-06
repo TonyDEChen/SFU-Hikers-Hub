@@ -57,7 +57,8 @@
                 <h1 th:text="${event.title}"></h1>
                 Posted by <p th:text="${event.op}"></p>
                 <p class="important" th:text="${event.location}"></p>
-                <p class="important" th:text="${event.time}"></p>
+                <!-- <p class="important" th:text="${event.time}"></p> -->
+                <p class="important" th:text="${#temporals.format(event.time, 'yyyy-MM-dd HH:mm')}"></p>
                 <p class="body" th:text="${event.body}"></p>
             </div>
             <div id="openweathermap-widget-11"></div>
