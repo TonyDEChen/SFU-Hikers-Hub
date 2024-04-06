@@ -2,6 +2,7 @@ package com.sfu_hikers_hub.sfu_hikers_hub.Controllers;
 
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,17 +39,19 @@ public class EventControllerTest {
     void testGetAllEvents() throws Exception {
 
         Event e1 = new Event();
+        LocalDateTime time = LocalDateTime.now();
         e1.setOp("wow");
         e1.setTitle("Big Event");
         e1.setLocation("Big Place");
-        // e1.setTime("10:30");
+        e1.setTime(time);
         e1.setBody("Wowsers Event!");
 
         Event e2 = new Event();
+        LocalDateTime time2 = LocalDateTime.of(2024, 5, 2, 14, 29);
         e2.setOp("hehy!");
         e2.setTitle("smaller event");
         e2.setLocation("Small Place");
-        // e2.setTime("7:30");
+        e2.setTime(time2);
         e2.setBody("Smaller wow event");
 
         List<Event> events = new ArrayList<Event>();
@@ -64,7 +67,7 @@ public class EventControllerTest {
                     hasProperty("op",       Matchers.is("wow")),
                     hasProperty("title",    Matchers.is("Big Event")),
                     hasProperty("location", Matchers.is("Big Place")),
-                    hasProperty("time",     Matchers.is("10:30")),
+                    hasProperty("time",     Matchers.is(time)),
                     hasProperty("body",     Matchers.is("Wowsers Event!"))
                 )
             )))
@@ -73,7 +76,7 @@ public class EventControllerTest {
                                 hasProperty("op",       Matchers.is("hehy!")),
                                 hasProperty("title",    Matchers.is("smaller event")),
                                 hasProperty("location", Matchers.is("Small Place")),
-                                hasProperty("time",     Matchers.is("7:30")),
+                                hasProperty("time",     Matchers.is(time2)),
                                 hasProperty("body",     Matchers.is("Smaller wow event"))
                         )
                 )));
