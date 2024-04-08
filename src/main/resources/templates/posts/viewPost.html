@@ -26,7 +26,6 @@
                 <a href="/register" class="nav-link" th:if="${user == null}">Register</a>
                 <a href="/logout" class="nav-link" th:if="${user != null}">Logout</a>
                 <a href="/account" class="nav-link" th:if="${user != null}">Account</a>
-                <a th:href="@{/userProfile/{id}(id=${user.username})}" class="nav-link">Profile</a>
             </div>
         </div>
     </header>
