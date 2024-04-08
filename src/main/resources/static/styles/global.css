@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -16,3 +17,4 @@ body {
     --max-width: 1200px;
     --accent-color: #9D4457;
 }
+
