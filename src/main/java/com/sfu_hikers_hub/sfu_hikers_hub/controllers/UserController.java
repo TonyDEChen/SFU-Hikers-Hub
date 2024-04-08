@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Comparator;
 import java.util.List;
@@ -267,6 +268,20 @@ public class UserController {
             return "users/account";
         }
     }
+
+    @GetMapping("/userProfile/{username}")
+    public String showUserProfile(@PathVariable String username, Model model, HttpSession session) {
+    User user = userRepo.findByUsername(username);
+    User loggedInUser = (User) session.getAttribute("session_user");
+
+    if (user == null) {
+        return "redirect:/login";
+    } else {
+        model.addAttribute("profileUser", user);
+        model.addAttribute("user", loggedInUser);
+    }
+    return "users/userProfile";
+}
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
