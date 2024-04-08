@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
+import com.sfu_hikers_hub.sfu_hikers_hub.models.PostRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,6 +31,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private PostRepository postRepo;
 
     @GetMapping("/dashboard")
     public String dashboard(Model model, HttpSession session) {
@@ -279,6 +283,9 @@ public class UserController {
     } else {
         model.addAttribute("profileUser", user);
         model.addAttribute("user", loggedInUser);
+
+        List<Post> userPosts = postRepo.findAllPostsByOp(username);
+        model.addAttribute("userPosts", userPosts);
     }
     return "users/userProfile";
 }

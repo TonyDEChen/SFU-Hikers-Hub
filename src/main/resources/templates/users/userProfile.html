@@ -6,8 +6,9 @@
     <title>SFU Hikers Hub - Account</title>
     <link rel="stylesheet" type="text/css" href="/styles/global.css">
     <link rel="stylesheet" type="text/css" href="/styles/navbar.css">
-    <link rel="stylesheet" type="text/css" href="/styles/userProfile.css">
     <link rel="stylesheet" type="text/css" href="/styles/footer.css">
+    <link rel="stylesheet" type="text/css" href="/styles/userProfile.css">
+    <link rel="stylesheet" type="text/css" href="../styles/forumPage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -37,6 +38,24 @@
             <p><strong>Total Hikes:</strong>    <span th:text="${profileUser.totalHikes}"></span></p>
         </div>
 
+        <h2>User Posts</h2>
+        <div th:each="post:${userPosts}" class="post-container">
+            <div class="post-content">
+                <div class="post-header">
+                    <p class="post-text">
+                        <strong class="post-title" th:text="${post.title}"></strong>
+                        <small class="post-body" th:text="${post.body}"></small>
+                    </p>
+                    <div class="right">
+                        <a class="button" th:href="@{/posts/view/{id}(id=${post.pid})}">Comments</a>
+                        <form action="/post/delete" method="post" th:if="${profileUser != null and profileUser.username == post.op or profileUser != null and profileUser.isAdmin}" onclick="return confirm('Are you sure want to delete this event? This cannot be undone');">
+                            <input type="hidden" name="pid" th:value="${post.pid}">
+                            <button type="submit" class="button" role="button">Delete</button>
+                        </form>  
+                    </div>                  
+                </div>
+            </div>
+        </div>
     </main>
 
 
