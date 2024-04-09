@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -40,7 +41,10 @@ public class GalleryController {
 
   @GetMapping("/gallery/view")
   public String viewGallery(Model model) {
-    model.addAttribute("photos", photoRepository.findAll());
+    // model.addAttribute("photos", photoRepository.findAll());
+    // return "gallery/photoGallery";
+    List<Photo> photos = photoRepository.findAll();
+    model.addAttribute("photos", photos);
     return "gallery/photoGallery";
   }
 
@@ -79,7 +83,7 @@ public class GalleryController {
     return "redirect:/gallery/view";
   }
 
-  private static final String UPLOAD_DIR = "uploads/";
+  private static final String UPLOAD_DIR = "src/main/resources/static/images";
 
   private String handleImageUpload(MultipartFile image) throws IOException {
     if (image.isEmpty()) {
@@ -88,6 +92,7 @@ public class GalleryController {
 
     // Generate a unique filename using UUID
     String filename = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
+    // String filename = image.getOriginalFilename();
 
     // Resolve the path to the upload directory
     Path uploadPath = Paths.get(UPLOAD_DIR);
