@@ -22,7 +22,7 @@
                 <a href="/events/view" class="nav-link">Events</a>
             </div>
             <div class="container-right">
-                <a href="/adminPanel" class="nav-link" th:if="${us.isAdmin() == true}">Admin Panel</a>
+                <a href="/adminPanel" class="nav-link" th:if="${us != null and us.isAdmin() == true}">Admin Panel</a>
                 <a href="/login" class="nav-link" th:if="${us == null}">Login</a>
                 <a href="/register" class="nav-link" th:if="${us == null}">Register</a>
                 <a href="/logout" class="nav-link" th:if="${us != null}">Logout</a>
