@@ -27,7 +27,7 @@ main {
 }
 
 .Headertitle {
-  margin-top: 110px;
+  margin-top: 80px;
   font-size: 30px;
   font-weight:bold;
   color: #333;
@@ -57,7 +57,7 @@ button[type="submit"]:hover {
 
 
 button[type="input"] {
-  margin-top: 70px;
+  margin-top: 110px;
   background-color: var(--accent-color);
   color: #fff;
   width: 200px;

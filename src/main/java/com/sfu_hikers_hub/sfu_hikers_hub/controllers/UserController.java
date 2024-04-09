@@ -35,18 +35,27 @@ public class UserController {
         User user = (User) session.getAttribute("session_user");
         if (user == null) {
             return "redirect:/login";
-        } else if (user.isAdmin()) {
+        } else {
+            model.addAttribute("user", user);
+            return "users/dashboard";
+        }
+    }
+
+    @GetMapping("/adminPanel")
+    public String adminPanel(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        } else if (!user.isAdmin()) {
+            return "redirect:/dashboard";
+        } else {
             List<User> users = userRepo.findAll();
 
             model.addAttribute("us", users);
             for(int i = 0; i < users.size(); i++) {
                  System.out.println(users.get(i).getUsername() + " " + users.get(i).isAdmin());
             }
-            
-            return "users/adminDashboard";
-        } else {
-            model.addAttribute("user", user);
-            return "users/dashboard";
+            return "users/adminPanel";
         }
     }
 
