@@ -83,7 +83,7 @@ public class GalleryController {
     return "redirect:/gallery/view";
   }
 
-  private static final String UPLOAD_DIR = "src/main/resources/static/images";
+  private static final String UPLOAD_DIR = "src/main/resources/static/uploads";
 
   private String handleImageUpload(MultipartFile image) throws IOException {
     if (image.isEmpty()) {

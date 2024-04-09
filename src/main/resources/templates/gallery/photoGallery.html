@@ -41,7 +41,7 @@
     <div class="gallery-container">
         <!-- Photos will be displayed here -->
         <th:block th:each="photo : ${photos}">
-            <img th:src="@{'/images/' + ${photo.filename}}" alt="Photo" width="100" height="100">
+            <img th:src="@{'/uploads/' + ${photo.filename}}" alt="Photo" width="100" height="100">
         </th:block>
     </div>
     </main>
