@@ -25,7 +25,7 @@
                 <a href="/gallery/view" class="nav-link">Photo Gallery</a>
             </div>
             <div class="container-right">
-                <a href="/adminPanel" class="nav-link" th:if="${user.isAdmin() == true}">Admin Panel</a>
+                <a href="/adminPanel" class="nav-link" th:if="${user != null and user.isAdmin() == true}">Admin Panel</a>
                 <a th:if="${user != null}" href="/logout" class="nav-link">Logout</a>
                 <a th:if="${user != null}" href="/account" class="nav-link">Account</a>
                 <a th:if="${user == null}" href="/login" class="nav-link">Login</a>

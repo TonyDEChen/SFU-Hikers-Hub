@@ -57,5 +57,6 @@ public class UserControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.view().name("users/changePassword"));
     }
+
 }
 
