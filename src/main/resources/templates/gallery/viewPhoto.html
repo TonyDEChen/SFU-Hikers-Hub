@@ -32,15 +32,15 @@
         </div>
     </div>
 </header>
-    
+   
     <main>
-        <h1>Photo Title: ${photo.title}</h1>
+        <!-- <h1>Photo Title: ${photo.title}</h1> -->
         <!-- <img src="/path/to/your/uploads/directory/${photo.filename}" alt="Photo"> -->
         <img th:src="@{'/uploads/' + ${photo.filename}}" alt="Photo">
 
 
         <!-- If you have a user object inside photo object -->
-        <p>Uploaded by: ${photo.user.username}</p>
+        <!-- <p>Uploaded by: ${photo.user.username}</p> -->
 
         <!-- If you don't have user inside photo, you can pass username separately -->
         <!-- <p>Uploaded by: ${username}</p> -->

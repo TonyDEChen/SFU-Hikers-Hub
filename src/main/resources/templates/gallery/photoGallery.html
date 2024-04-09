@@ -41,7 +41,7 @@
     <div class="gallery-container">
         <div th:each="photo : ${photos}">
             <div class="photo-item">
-                <h2 th:text="${photo.title}">Photo Title</h2>
+                <!-- <h2 th:text="${photo.title}">Photo Title</h2> -->
                 <img th:src="@{'/uploads/' + ${photo.filename}}" alt="Photo"/>
                 <a th:href="@{/gallery/photo/{id}(id=${photo.id})}">View Photo</a>
             </div>
