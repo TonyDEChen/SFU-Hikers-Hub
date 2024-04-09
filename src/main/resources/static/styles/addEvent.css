@@ -24,7 +24,8 @@
 
 .add-event-container input[type="text"],
 .add-event-container textarea,
-.add-event-container input[type="number"] {
+.add-event-container input[type="number"],
+.add-event-container input[type="datetime-local"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
