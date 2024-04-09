@@ -21,8 +21,10 @@
                 <a href="/dashboard" class="nav-link">Dashboard</a>
                 <a href="/posts/view" class="nav-link">Forum</a>
                 <a href="/events/view" class="nav-link">Events</a>
+                <a href="/gallery/view" class="nav-link">Photo Gallery</a>
             </div>
             <div class="container-right">
+                <a href="/adminPanel" class="nav-link" th:if="${user.isAdmin() == true}">Admin Panel</a>
                 <a href="/logout" class="nav-link">Logout</a>
                 <a href="/account" class="nav-link">Account</a>
             </div>
@@ -37,7 +39,7 @@
             <p><strong>total Km:</strong>       <span th:text="${profileUser.totalKm}"></span></p>
             <p><strong>Total Hikes:</strong>    <span th:text="${profileUser.totalHikes}"></span></p>
         </div>
-
+        <br>
         <h2>User Posts</h2>
         <div th:each="post:${userPosts}" class="post-container">
             <div class="post-content">
@@ -48,10 +50,6 @@
                     </p>
                     <div class="right">
                         <a class="button" th:href="@{/posts/view/{id}(id=${post.pid})}">Comments</a>
-                        <form action="/post/delete" method="post" th:if="${profileUser != null and profileUser.username == post.op or profileUser != null and profileUser.isAdmin}" onclick="return confirm('Are you sure want to delete this event? This cannot be undone');">
-                            <input type="hidden" name="pid" th:value="${post.pid}">
-                            <button type="submit" class="button" role="button">Delete</button>
-                        </form>  
                     </div>                  
                 </div>
             </div>
