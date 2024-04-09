@@ -47,6 +47,7 @@
                 <a th:if="${user != null}" href="/account" class="nav-link">Account</a>
                 <a th:if="${user == null}" href="/login" class="nav-link">Login</a>
                 <a th:if="${user == null}" href="/register" class="nav-link">Register</a>
+                <a th:href="@{/userProfile/{username}(username=${user.username})}" class="nav-link">Profile</a>
             </div>
         </div>
     </header>
@@ -56,7 +57,7 @@
         <div class="info">
             <div class="details">
                 <h1 th:text="${event.title}"></h1>
-                Posted by <p th:text="${event.op}"></p>
+                Posted by <p th:text="${event.op}" ></p>
                 <p class="important" th:text="${event.location}"></p>
                 <!-- <p class="important" th:text="${event.time}"></p> -->
                 <p class="important" th:text="${#temporals.format(event.time, 'yyyy-MM-dd HH:mm')}"></p>

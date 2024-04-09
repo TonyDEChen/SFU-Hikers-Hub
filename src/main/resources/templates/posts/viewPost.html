@@ -33,7 +33,8 @@
     <main>
         <div>
             <h1 th:text="${post.title}"></h1>
-            Posted by <p th:text="${post.op}"></p>
+            <p>Posted by</p>
+            <a th:text="${post.op}" th:href="@{/userProfile/{username}(username=${post.op})}"></a>
             <br>
             <p th:text="${post.body}"></p>
         </div>
@@ -51,7 +52,7 @@
             <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
         </div>
     </main>
-    
+
     <footer class="footer">
         <div class="footer-container">
             <p class="footer-copyright-text">SFU Hiking Club 2024 ©</p>

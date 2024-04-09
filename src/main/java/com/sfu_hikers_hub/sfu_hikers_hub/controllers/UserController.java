@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Post;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
+import com.sfu_hikers_hub.sfu_hikers_hub.models.PostRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Comparator;
 import java.util.List;
@@ -29,6 +31,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private PostRepository postRepo;
 
     @GetMapping("/dashboard")
     public String dashboard(Model model, HttpSession session) {
@@ -276,6 +281,23 @@ public class UserController {
             return "users/account";
         }
     }
+
+    @GetMapping("/userProfile/{username}")
+    public String showUserProfile(@PathVariable String username, Model model, HttpSession session) {
+    User user = userRepo.findByUsername(username);
+    User loggedInUser = (User) session.getAttribute("session_user");
+
+    if (user == null) {
+        return "redirect:/login";
+    } else {
+        model.addAttribute("profileUser", user);
+        model.addAttribute("user", loggedInUser);
+
+        List<Post> userPosts = postRepo.findAllPostsByOp(username);
+        model.addAttribute("userPosts", userPosts);
+    }
+    return "users/userProfile";
+}
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
