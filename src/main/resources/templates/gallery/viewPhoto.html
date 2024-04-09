@@ -7,7 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../styles/global.css">
     <link rel="stylesheet" type="text/css" href="../styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="../styles/footer.css">
-    <link rel="stylesheet" type="text/css" href="/static/styles/photoGallery.css"> 
+    <link rel="stylesheet" type="text/css" href="../styles/photoGallery.css">
+   <!-- <link rel="stylesheet" type="text/css" href="../static/styles/photoGallery.css"> --> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -34,7 +35,9 @@
     
     <main>
         <h1>Photo Title: ${photo.title}</h1>
-        <img src="/path/to/your/uploads/directory/${photo.filename}" alt="Photo">
+        <!-- <img src="/path/to/your/uploads/directory/${photo.filename}" alt="Photo"> -->
+        <img th:src="@{'/uploads/' + ${photo.filename}}" alt="Photo">
+
 
         <!-- If you have a user object inside photo object -->
         <p>Uploaded by: ${photo.user.username}</p>
@@ -42,6 +45,11 @@
         <!-- If you don't have user inside photo, you can pass username separately -->
         <!-- <p>Uploaded by: ${username}</p> -->
     </main>
+
+    <!-- "Add Photo" button wrapped in a div -->
+<div class="add-photo-container">
+  <a href="/gallery/add" class="button">Add Photo</a>
+</div>
 
     <footer class="footer">
       <div class="footer-container">

@@ -3,6 +3,7 @@ package com.sfu_hikers_hub.sfu_hikers_hub.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Photo;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.PhotoRepository;
@@ -101,6 +102,16 @@ public class GalleryController {
     Files.copy(image.getInputStream(), filePath);
 
     return filename;
+  }
+
+  // New Addition to view individual photos :
+  @GetMapping("/gallery/photo/{id}")
+  public String viewPhoto(@PathVariable Long id, Model model) {
+    Photo photo = photoRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Invalid photo Id:" + id));
+    model.addAttribute("photo", photo);
+    return "gallery/viewPhoto";
+
   }
 
 }
