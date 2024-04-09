@@ -35,14 +35,21 @@
     </header>
    
     <main>
-      <div class="add-photo-container">
-        <a href="/gallery/add" class="button" role="button">Add Photo</a> <!-- Updated the link to point to the gallery add photo page -->
-    </div>
+       <div class="add-photo-container">
+       <!--  <a href="/gallery/add" class="button" role="button">Add Photo</a> --> <!-- Updated the link to point to the gallery add photo page -->
+     </div> 
     <div class="gallery-container">
-        <!-- Photos will be displayed here -->
+        <div th:each="photo : ${photos}">
+            <div class="photo-item">
+                <!-- <h2 th:text="${photo.title}">Photo Title</h2> -->
+                <img th:src="@{'/uploads/' + ${photo.filename}}" > <!-- alt="Photo"/ -->
+                <a th:href="@{/gallery/photo/{id}(id=${photo.id})}">View Photo</a> 
+            </div>
+        </div>
+        
     </div>
     </main>
-    
+   
     <footer class="footer">
         <div class="footer-container">
             <p class="footer-copyright-text">SFU Hiking Club 2024 ©</p>

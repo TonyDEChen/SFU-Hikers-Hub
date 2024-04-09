@@ -132,7 +132,7 @@ public class PostController {
             System.out.println("Found post");
             model.addAttribute("post", post);
             model.addAttribute("user", user);
-
+            
             return "posts/viewPost";
         }catch(Exception e){
             return "posts/error";
