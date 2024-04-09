@@ -2,6 +2,7 @@ package com.sfu_hikers_hub.sfu_hikers_hub.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.HandlerInterceptor;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,5 +21,11 @@ public class WebConfig implements WebMvcConfigurer {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("file:src/main/resources/static/images/");
     }
 }
