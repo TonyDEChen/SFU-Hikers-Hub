@@ -36,7 +36,7 @@
     <main>
         <!-- <h1>Photo Title: ${photo.title}</h1> -->
         <!-- <img src="/path/to/your/uploads/directory/${photo.filename}" alt="Photo"> -->
-        <img th:src="@{'/uploads/' + ${photo.filename}}" alt="Photo">
+        <img th:src="@{'/uploads/' + ${photo.filename}}"> <!-- alt="Photo"> --> 
 
 
         <!-- If you have a user object inside photo object -->
