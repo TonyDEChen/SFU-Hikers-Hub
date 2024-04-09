@@ -29,21 +29,21 @@ public class UserControllerTest {
     static void setup() {
         System.out.println("Setting up");
     }
-    /* 
+
     @Test
     public void testRedirect() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/dashboard"))
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/login"))
                 .andExpect(MockMvcResultMatchers.view().name("redirect:/login"));
     }
-    */
+
     @Test
     public void testGetLogin() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/login"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.view().name("users/login"));
     }
-    /* 
+
     @Test
     public void testGetRegister() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/register"))
@@ -57,6 +57,6 @@ public class UserControllerTest {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.view().name("users/changePassword"));
     }
-    */
+
 }
 
