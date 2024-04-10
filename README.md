@@ -35,4 +35,4 @@ mvn spring-boot:run
 - **Personal Achievements**: Customize your profile with your hiking achievements, including total kilometers hiked and trails visited.
 
 ## Credits
-This project was developed by Tony Chen, Chris Sim, Ahmad Masud, Vu Bui, and Lavika Singh as part of the CMPT 276 course at Simon Fraser University.
+This project was developed by Tony Chen, Chris Sim, Ahmad Masud, Vu Bui, and Lavika Singh.
