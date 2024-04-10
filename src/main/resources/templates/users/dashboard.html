@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="styles/global.css">
     <link rel="stylesheet" type="text/css" href="styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="styles/footer.css">
+    <link rel="stylesheet" type="text/css" href="/styles/userProfile.css">
+    <link rel="stylesheet" type="text/css" href="../styles/forumPage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -28,7 +30,43 @@
             </div>
         </div>
     </header>
-    <main></main>
+    <main>
+        <div class="profile-container">
+            <p class="profile-title">User Information</p>
+            <p><strong>First Name:</strong>     <span th:text="${user.firstName}"></span> </p>
+            <p><strong>Last Name:</strong>      <span th:text="${user.lastName}"></span> </p>
+            <p><strong>Username:</strong>       <span th:text="${user.username}"></span></p>
+            <p><strong>total Km:</strong>                       
+            <form action="/updateTotalKm" method="post">
+                <input type="number" id="totalKm" name="totalKm" th:value="${user.totalKm}" required>
+                <button type="submit" class="button">Update</button>
+            </form>
+            <p><strong>Total Hikes:</strong>
+            <form action="/updateTotalHikes" method="post">
+                <input type="number" id="totalHikes" name="totalHikes" th:value="${user.totalHikes}" required>
+                <button type="submit" class="button">Update</button>
+            </form>
+        </div>
+        <br>
+        <h2>User Posts</h2>
+        <div th:each="post:${userPosts}" class="post-container">
+            <div class="post-content">
+                <div class="post-header">
+                    <p class="post-text">
+                        <strong class="post-title" th:text="${post.title}"></strong>
+                        <small class="post-body" th:text="${post.body}"></small>
+                    </p>
+                    <div class="right">
+                        <a class="button" th:href="@{/posts/view/{id}(id=${post.pid})}">Comments</a>
+                        <form action="/post/delete" method="post" th:if="${user != null and user.username == post.op or user != null and user.isAdmin}" onclick="return confirm('Are you sure want to delete this event? This cannot be undone');">
+                            <input type="hidden" name="pid" th:value="${post.pid}">
+                            <button type="submit" class="button" role="button">Delete</button>
+                        </form>  
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </main>
     <footer class="footer">
         <div class="footer-container">
             <p class="footer-copyright-text">SFU Hiking Club 2024 ©</p>

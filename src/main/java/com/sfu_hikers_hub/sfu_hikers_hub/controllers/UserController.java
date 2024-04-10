@@ -35,17 +35,6 @@ public class UserController {
     @Autowired
     private PostRepository postRepo;
 
-    @GetMapping("/dashboard")
-    public String dashboard(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("session_user");
-        if (user == null) {
-            return "redirect:/login";
-        } else {
-            model.addAttribute("user", user);
-            return "users/dashboard";
-        }
-    }
-
     @GetMapping("/adminPanel")
     public String adminPanel(Model model, HttpSession session) {
         User user = (User) session.getAttribute("session_user");
@@ -282,23 +271,60 @@ public class UserController {
         }
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("user", user);
+            List<Post> userPosts = postRepo.findAllPostsByOp(user.getUsername());
+            model.addAttribute("userPosts", userPosts);
+            return "users/dashboard";
+        }
+    }
+
     @GetMapping("/userProfile/{username}")
     public String showUserProfile(@PathVariable String username, Model model, HttpSession session) {
-    User user = userRepo.findByUsername(username);
-    User loggedInUser = (User) session.getAttribute("session_user");
+        User user = userRepo.findByUsername(username);
+        User loggedInUser = (User) session.getAttribute("session_user");
 
-    if (user == null) {
-        return "redirect:/login";
-    } else {
-        model.addAttribute("profileUser", user);
-        model.addAttribute("user", loggedInUser);
+        if (user == null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("profileUser", user);
+            model.addAttribute("user", loggedInUser);
 
-        List<Post> userPosts = postRepo.findAllPostsByOp(username);
-        model.addAttribute("userPosts", userPosts);
+            List<Post> userPosts = postRepo.findAllPostsByOp(username);
+            model.addAttribute("userPosts", userPosts);
+        }
+        return "users/userProfile";
     }
-    return "users/userProfile";
-}
 
+    @PostMapping("/updateTotalKm")
+    public String updateTotalKm(@RequestParam("totalKm") String totalKm, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        user.setTotalKm(Integer.parseInt(totalKm));
+        userRepo.save(user);
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/updateTotalHikes")
+    public String updateTotalHikes(@RequestParam("totalHikes") String totalHikes, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("session_user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        user.setTotalHikes(Integer.parseInt(totalHikes));
+        userRepo.save(user);
+        return "redirect:/dashboard";
+    }
+    
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();

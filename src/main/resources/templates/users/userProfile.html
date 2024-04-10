@@ -50,6 +50,10 @@
                     </p>
                     <div class="right">
                         <a class="button" th:href="@{/posts/view/{id}(id=${post.pid})}">Comments</a>
+                        <form action="/post/delete" method="post" th:if="${user != null and user.username == post.op or user != null and user.isAdmin}" onclick="return confirm('Are you sure want to delete this event? This cannot be undone');">
+                            <input type="hidden" name="pid" th:value="${post.pid}">
+                            <button type="submit" class="button" role="button">Delete</button>
+                        </form>  
                     </div>                  
                 </div>
             </div>
