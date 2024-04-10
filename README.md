@@ -1,4 +1,5 @@
 # SFU Hikers Hub
+![Demo](resources/demo.gif)
 
 ## Introduction
 The SFU Hikers Hub is a centralized digital platform designed for the Simon Fraser Hiking Club. Its purpose is to enhance community engagement, facilitate the organization of events, and provide a dedicated space for members to share and find information about hiking trails, weather updates, and related activities. Built with Spring Boot, the HikeSFU website aims to address the club's need for a unified online hub, moving beyond scattered social media pages to a cohesive and engaging web application.
