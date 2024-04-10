@@ -41,12 +41,12 @@
                 <a th:if="${user != null}" href="/dashboard" class="nav-link">Dashboard</a>
                 <a href="/posts/view" class="nav-link">Forum</a>
                 <a href="/events/view" class="nav-link">Events</a>
-                <a href="/gallery/view" class="nav-link">Photo Gallery</a>
+                <a href="/gallery/view" class="nav-link">Gallery</a>
             </div>
             <div class="container-right">
-                <a href="/adminPanel" class="nav-link" th:if="${user.isAdmin() == true}">Admin Panel</a>
-                <a th:if="${user != null}" href="/logout" class="nav-link">Logout</a>
+                <a href="/adminPanel" class="nav-link" th:if="${user.isAdmin() == true}">Admin</a>
                 <a th:if="${user != null}" href="/account" class="nav-link">Account</a>
+                <a th:if="${user != null}" href="/logout" class="nav-link">Logout</a>
                 <a th:if="${user == null}" href="/login" class="nav-link">Login</a>
                 <a th:if="${user == null}" href="/register" class="nav-link">Register</a>
                 <a th:href="@{/userProfile/{username}(username=${user.username})}" class="nav-link">Profile</a>

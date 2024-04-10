@@ -20,14 +20,15 @@
                 <a th:if="${us != null}" href="/dashboard" class="nav-link">Dashboard</a>
                 <a href="/posts/view" class="nav-link">Forum</a>
                 <a href="/events/view" class="nav-link">Events</a>
-                <a href="/gallery/view" class="nav-link">Photo Gallery</a> 
+                <a href="/gallery/view" class="nav-link">Gallery</a> 
                <!-- <a href="/gallery/photoGallery" class="nav-link">Photo Gallery</a> --> 
             </div>
             <div class="container-right">
+                <a href="/adminPanel" class="nav-link" th:if="${us != null and us.isAdmin() == true}">Admin</a>
+                <a href="/account" class="nav-link" th:if="${us != null}">Account</a>
                 <a href="/login" class="nav-link" th:if="${us == null}">Login</a>
                 <a href="/register" class="nav-link" th:if="${us == null}">Register</a>
                 <a href="/logout" class="nav-link" th:if="${us != null}">Logout</a>
-                <a href="/account" class="nav-link" th:if="${us != null}">Account</a>
             </div>
         </div>
     </header>
