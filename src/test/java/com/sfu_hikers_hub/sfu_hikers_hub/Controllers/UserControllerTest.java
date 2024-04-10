@@ -1,7 +1,5 @@
 package com.sfu_hikers_hub.sfu_hikers_hub.Controllers;
 
-import static org.mockito.Mockito.when;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
