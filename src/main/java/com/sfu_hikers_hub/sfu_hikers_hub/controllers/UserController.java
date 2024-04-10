@@ -134,7 +134,7 @@ public class UserController {
         List<User> users = userRepo.findAll();
         model.addAttribute("us", users);
         
-        return "users/adminDashboard";
+        return "users/adminPanel";
     }
 
     @PostMapping("/updateFirstName")

@@ -54,7 +54,7 @@
                             <td th:text="${user.isAdmin} ? 'Yes' : 'No'"></td>
                             <td>
                                 <!-- edit button -->
-                                <form action="/promote" method="post">
+                                <form action="/promote" method="post" th:if="${user.isAdmin() != true}">
                                     <input type="hidden" id="uid" name="uid" th:value="${user.uid}">
                                     <button class="btn btn-primary" type="submit" value="SEND">Promote to Admin</button>
                                 </form>
