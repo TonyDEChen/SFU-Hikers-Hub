@@ -14,8 +14,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new HandlerInterceptor() {
             @Override
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate, max-age=0");
                 response.setHeader("Pragma", "no-cache");
+                response.setHeader("Expires", "0");
                 response.setDateHeader("Expires", 0);
                 return true;
             }
