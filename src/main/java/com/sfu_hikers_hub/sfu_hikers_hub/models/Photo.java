@@ -2,6 +2,9 @@ package com.sfu_hikers_hub.sfu_hikers_hub.models;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import java.util.List;
 
 @Entity
 @Table(name = "photos")
@@ -23,6 +26,7 @@ public class Photo {
   @ManyToOne
   @JoinColumn(name = "user_id", referencedColumnName = "uid")
   // @JoinColumn(name = "user_id", referencedColumnName = "id")
+
   private User user;
 
   // Constructors

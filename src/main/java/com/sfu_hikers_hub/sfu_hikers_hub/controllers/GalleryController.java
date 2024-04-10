@@ -11,6 +11,7 @@ import com.sfu_hikers_hub.sfu_hikers_hub.models.PhotoRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -113,5 +114,4 @@ public class GalleryController {
     return "gallery/viewPhoto";
 
   }
-
 }

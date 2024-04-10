@@ -44,6 +44,19 @@
 
         <!-- If you don't have user inside photo, you can pass username separately -->
         <!-- <p>Uploaded by: ${username}</p> -->
+
+    <!-- Cusdis comments section, visible only to logged-in users -->
+    <div class="comments" th:if="${user != null}">
+        <div id="cusdis_thread"
+             data-host="https://cusdis.com"
+             data-app-id="a4002586-2b13-49ab-901c-9cfb9e6bff42" 
+             th:data-page-id="${photo.id}"
+             data-page-url="@{|${#httpServletRequest.getRequestURL().toString()}|}"
+             data-page-title="${photo.title}"
+             ></div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+        
     </main>
 
     <!-- "Add Photo" button wrapped in a div -->
