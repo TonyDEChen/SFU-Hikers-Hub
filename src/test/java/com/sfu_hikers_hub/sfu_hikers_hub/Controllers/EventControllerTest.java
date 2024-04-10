@@ -8,20 +8,26 @@ import java.util.List;
 
 import org.hamcrest.Matchers;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.client.RestTemplate;
 
 import com.sfu_hikers_hub.sfu_hikers_hub.controllers.EventController;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.Event;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.EventRepository;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
+
+import io.github.cdimascio.dotenv.Dotenv;
 
 @WebMvcTest(EventController.class)
 public class EventControllerTest {
@@ -34,6 +40,20 @@ public class EventControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    Dotenv dotenv;
+    private String apiKey;
+    private String apiKeyWeather;
+
+    public EventControllerTest(){
+        try {
+            dotenv = Dotenv.configure().directory("/etc/secrets/").load();
+        } catch (Exception e) {
+            dotenv = Dotenv.load();
+        }
+        this.apiKey = dotenv.get("MAPS_KEY");
+        this.apiKeyWeather = dotenv.get("WEATHER_KEY");
+    }
 
     @Test
     void testGetAllEvents() throws Exception {
@@ -80,5 +100,24 @@ public class EventControllerTest {
                                 hasProperty("body",     Matchers.is("Smaller wow event"))
                         )
                 )));
+    }
+
+    @Test
+    public void testGoogleApi() {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=" + apiKey;
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        assertEquals(200, response.getStatusCode().value());
+    }
+
+    @Test
+    public void testOpenWeatherApi() {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=" + apiKeyWeather;
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        assertEquals(200, response.getStatusCode().value());
     }
 }
