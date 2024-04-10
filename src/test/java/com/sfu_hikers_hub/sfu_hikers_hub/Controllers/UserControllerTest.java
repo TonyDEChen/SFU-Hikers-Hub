@@ -14,12 +14,16 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.sfu_hikers_hub.sfu_hikers_hub.controllers.UserController;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.User;
 import com.sfu_hikers_hub.sfu_hikers_hub.models.UserRepository;
+import com.sfu_hikers_hub.sfu_hikers_hub.models.PostRepository;
 
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
 
     @MockBean
     private UserRepository UserRepository;
+
+    @MockBean
+    private PostRepository PostRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,6 +60,24 @@ public class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/changePassword"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.view().name("users/changePassword"));
+    }
+
+    @Test
+    public void testProfileRedirect() throws Exception {
+        User u1 = new User();
+        u1.setFirstName("Wow");
+        u1.setLastName("Crazy");
+        u1.setPassword("Woah!");
+        u1.setEmail("cool.gmail.com");
+        u1.setTotalHikes(4);
+        u1.setTotalKm(300);
+        u1.setUid(12712);
+        u1.setUsername("epic");
+        u1.setAdmin(false);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/userProfile/epic"))
+            .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+            .andExpect(MockMvcResultMatchers.redirectedUrl("/login"));
     }
 
 }
